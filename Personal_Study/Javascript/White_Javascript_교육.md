@@ -2,7 +2,7 @@
 
 - 과제
     
-    [Javascript 과제.zip](White%20Javascript%20%E1%84%80%E1%85%AD%E1%84%8B%E1%85%B2%E1%86%A8%20020a835d7e314ef5a5302c2dfe331b72/Javascript_%25EA%25B3%25BC%25EC%25A0%259C.zip)
+    [Javascript 과제.zip](White_Javascript_교육/Javascript_%25EA%25B3%25BC%25EC%25A0%259C.zip)
     
     - preventdefault() 메서드 추가하기.
 - Execution Context

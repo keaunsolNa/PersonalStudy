@@ -149,7 +149,7 @@
                 
             - 위 코드의 경우 값은 아래와 같다.
                 
-                ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled.png)
+                ![Untitled](Javascript(ES6)/Untitled.png)
                 
             - null타입의 경우, JS 첫번째 버전부터 있었던 버그지만 아직 고쳐지지 않은 버그. null타입이 맞다.
     - Implicit_coercion
@@ -172,14 +172,14 @@
             - 더하기 연산자를 제외한 산술 연산자는 피연산자들이 숫자여야 하므로, 피연산자들을 숫자 타입으로 암묵적 형변환한다.
             - 비교 연산자 역시 크기를 비교하기 위해 모두 숫자 타입이어야 하므로 피 연산자들을 숫자 타입으로 암묵적 타입 변환한다.
                 
-                ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled%201.png)
+                ![Untitled](Javascript(ES6)/Untitled%201.png)
                 
             - + 단항 연산자를 활용 숫자 타입으로 암묵적 타입 변환이 가능하다.
         - convert-to-boolean
             
-            ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled%202.png)
+            ![Untitled](Javascript(ES6)/Untitled%202.png)
             
-            ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled%203.png)
+            ![Untitled](Javascript(ES6)/Untitled%203.png)
             
             - 위 코드에서 처음과 마지막을 제외한 값들은 모두 Falsy 값.
             - 자바스크립트 엔진은 불리언 타입이 아닌 값을 Truthy 값(참으로 평가 되는 값) 또는 Falsy 값(거짓으로 평가되는 값)으로 구분한다. 즉,  Truthy -> true, Falsy -> false로 암묵적 타입 변환을 한다.
@@ -1142,7 +1142,7 @@
 - Inheritance
     - [[Prototype]]
         
-        ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled%204.png)
+        ![Untitled](Javascript(ES6)/Untitled%204.png)
         
         - JS의 모든 객체는 프로토타입 객체로부터 만들어지며, 모든 객체는 프로토타입 객체에 접근할 수 있다.
             
@@ -1220,12 +1220,12 @@
             
         - proto의 값은 객체 또는 null만 가능하다. 다른 자료형은 무시된다.
             
-            ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled%205.png)
+            ![Untitled](Javascript(ES6)/Untitled%205.png)
             
 - Function Prototype
     - Object Constructor Prototype
         
-        ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled%206.png)
+        ![Untitled](Javascript(ES6)/Untitled%206.png)
         
         - new 생성자 함수는 생성되는 순간 프로토타입 객체 {}가 생성된다.
         - 객체는 함수의 속성을 물려받는다. 이 때 prototype 객체 역시 상속받을 수 있다.
@@ -1252,7 +1252,7 @@
             console.log(std.activate)                                   // true
             ```
             
-            ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled%207.png)
+            ![Untitled](Javascript(ES6)/Untitled%207.png)
             
     - Function Property And Constructor Property
         - 개발자가 특별히 할당하지 않더라도 모든 함수는 기본적으로 "prototype" 프로퍼티를 가진다.
@@ -2122,7 +2122,7 @@
         phone.name = '전화기2';                             // name setter 동작
         ```
         
-        ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled%208.png)
+        ![Untitled](Javascript(ES6)/Untitled%208.png)
         
         - class 내부에서 constructor 내부의 this는 getter와 setter가 있을 경우 단순 property가 아닌 set 함수 내부의 this._(property)가 된다.
         - 이때 _을 붙이지 않을 경우 set의 this.name은 자기 자신을 호출하는 함수(무한 반복)가 된다.
@@ -2615,13 +2615,13 @@
 - DOM(Document Object Model)
     - 브라우저 랜더링 엔진은 HTML 문서를 파싱하여 브라우저가 이해할 수 있는 자료 구조인 DOM을 생성한다.
         
-        ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled%209.png)
+        ![Untitled](Javascript(ES6)/Untitled%209.png)
         
     - HTML 문서를 파싱한 결과물로서 생성 된 DOM은 HTML 문서의 구조와 정보뿐만 아니라 HTML 요소와 스타일 등을 변경할 수 있는 프로그래밍 인터페이스로서 DOM API를 제공한다. 자바스크립트에서 DOM API를 사용하면 이미 생성 된 DOM을 동적으로 조작할 수 있다.
 - NODE
     - HTML 요소는 랜더링 엔진에 의해 파싱되어 DOM을 구성하는 요소 노드 객체로 반환된다. 이때 HTML 요소의 어트리뷰트는 어트리뷰트 노드로, HTML 요소의 TEXT CONTENT는 TEXT NODE로 변환 된다.
         
-        ![Untitled](Javascript(ES6)%20629e3cf8505b406ebcb0d0a62c57ae36/Untitled%2010.png)
+        ![Untitled](Javascript(ES6)/Untitled%2010.png)
         
     - HTML 요소 간에는 중첩 관계에 의해 계층적인 부자 관계가 형성 된다.
     - 이러한 HTML 요소 간의 부자 관계를 반영하여 HTML 문서의 구성 요소인 HTML 요소를 객체화한 모든 노드 객체들을 트리 자료 구조로 구성한다.
