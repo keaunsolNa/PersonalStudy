@@ -1,0 +1,32 @@
+# Jakarta Bean Validation API
+
+- V3.02
+    - Release Date : 2022년 5월 26일
+    - Usages : 794 (1,403 artifacts, 15796 projects)
+    - Repository : Central
+    - Vulnerabilities : 현재 시점 (2023.06.15) 없음
+    - Required Java Version : Java 11 이상
+- V2.02
+    - Release Date : 2019년 9월 03일
+    - Usages : 588 (1,403 artifacts, 15796 projects)
+    - Repository : Central
+    - Vulnerabilities : 현재 시점 (2023.06.15) 없음
+    - Required Java Version : Java 8이상
+- Hibernate Validator 관련 의존성
+    - Hibernate Validator는 Jakarta Bean Validation의 구현체로, Jakarta Bean Validation API는 **`javax.validation`** 패키지에 정의되어 있으며 Hibernate Validator만 추가해주어도, Jakarta Bean Validation API 에 대한 의존성이 추가 된다.
+    - 단, Hibernate Validator는 현재 Vulnerabilities 관련 이슈 확인 됨.
+        - CVE-2022-42004
+            - 2.13.4 이전의 FasterXML jackson-databind에서는 깊게 중첩된 배열의 사용을 방지하기 위한 BeanDeserializer._deserializeFromArray의 검사 부족으로 인해 리소스 고갈이 발생할 수 있음
+                - NIST 기본 점수 : 7.5 높음
+        - CVE-2022-42003
+            - 2.14.0-rc1 이전의 FasterXML jackson-databind에서는 UNWRAP_SINGLE_VALUE_ARRAYS 기능이 활성화된 경우 깊은 래퍼 배열 중첩을 방지하기 위해 Primitive 값 deserializer의 검사 부족으로 인해 리소스 고갈이 발생할 수 있음
+                - NIST 기본 점수 : 7.5 높음
+        - CVE-2022-4065
+            - cbeust testng 7.5.0/7.6.0/7.6.1/7.7.0에서 취약점 발견.
+            - 취약점의 영향을 받는 것은 구성 요소 XML 파일 구문 분석기의 testng-core/src/main/java/org/testng/JarFileUtils.java 파일의 testngXmlExistsInJar 함수
+            - 조작은 경로 통과로 이어진다.
+            - 버전 7.5.1 및 7.7.1로 업그레이드하면 문제 해결 가능
+                - NIST 기본 점수 : 7.8 높음
+    - Jakarta Bean Validation API 사용은 Hibernate Validator 관련 의존성 추가 없이도 가능하다.
+- Spring Version
+    - Spring Boot 2.x version의 경우, Jakarta는 support 되지 않는다. 3.x 버전 이후 부터 가능. 2.x의 경우, javax를 사용 해야 한다.

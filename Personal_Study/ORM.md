@@ -1,0 +1,7 @@
+# ORM
+
+[MyBatis](ORM/MyBatis%20efa326e273ad4609b71d634393d9011a.md)
+
+[JPA(Java Persistence API)](ORM/JPA(Java%20Persistence%20API)%2051bd328de13647eb8c394ec63bb27f81.md)
+
+[JDBC](ORM/JDBC%209faf010b02aa4422a22101482a236a20.md)

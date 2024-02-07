@@ -1,0 +1,3 @@
+# Oracle DataBase Structure
+
+[ORACLE DATABASE 구조.pptx](Oracle%20DataBase%20Structure%20967bacb5e38d44348e49053216916ef9/ORACLE_DATABASE_%25EA%25B5%25AC%25EC%25A1%25B0.pptx)
