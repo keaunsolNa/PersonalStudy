@@ -2,7 +2,7 @@
 
 - 작동 원리
     
-    ![Untitled](White%20Java%20%E1%84%80%E1%85%AD%E1%84%8B%E1%85%B2%E1%86%A8%20c75ddf79870c44f7a4758e809c68194f/Untitled.png)
+    ![Untitled](White_Java_교육/Untitled.png)
     
     - JDK(Java Development Kit)은 JRE와 함께 자바 프로그램을 개발하기 위해 필요한 도구들을 포함한것
     - JRE(Java Runtime Environment)는 자바 프로그램을 실행시킬 수 있는 환경을 뜻하며, JVM, 클래스로더, 자바 기본 라이브러리를 포함한다.
@@ -32,14 +32,14 @@
 - 관련 기술
     - Servlet
         
-        ![Untitled](White%20Java%20%E1%84%80%E1%85%AD%E1%84%8B%E1%85%B2%E1%86%A8%20c75ddf79870c44f7a4758e809c68194f/Untitled%201.png)
+        ![Untitled](White_Java_교육/Untitled%201.png)
         
         - 자바를 이용한 웹 프로그램 개발 시 필요한 기술
         - 클라이언트의 요청에 따라 데이터를 조작, HTML로 Response한다.
         - JSP의 HttpServlet 클래스를 상속받는다.
         - 상속받은 init(), destroy() 메서드를 통해 생명주기를 관리한다.
             
-            ![Untitled](White%20Java%20%E1%84%80%E1%85%AD%E1%84%8B%E1%85%B2%E1%86%A8%20c75ddf79870c44f7a4758e809c68194f/Untitled%202.png)
+            ![Untitled](White_Java_교육/Untitled%202.png)
             
             - init() : 최초 요청을 받았을 때 서블릿 객체를 생성 및 초기화 시켜주는 메서드. destroy() 되기 전에 다시 호출하면 초기화되지 않고 기존에 생성된 서블릿 객체를 호출한다.
             - service() : get/post 요청에 따라 메서드가 호출되어 데이터를 조회하거나 조작하여 동적인 페이지를 생성해서 클라이언트에게 반환한다.
@@ -52,7 +52,7 @@
         - 안정적인 트랜잭션 관리가 보장되어 주로 공공기관, 대기업 등에서 선호하는 서버 모델이다.
     - JSP
         
-        ![Untitled](White%20Java%20%E1%84%80%E1%85%AD%E1%84%8B%E1%85%B2%E1%86%A8%20c75ddf79870c44f7a4758e809c68194f/Untitled%203.png)
+        ![Untitled](White_Java_교육/Untitled%203.png)
         
         - Java Server Page의 약자이며, HTML 코드와 Java 코드를 함께 사용해 개발할 수 있다.
         - JSP가 호출되면 WAS는 Java 부분은 서블릿으로 변환 후 컴파일하고, Class 파일을 메모리 상에 로딩한다.

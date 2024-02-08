@@ -824,9 +824,9 @@
 
 [JAVA Method](JAVA_생활코딩/JAVA%20Method%2092d3c08a389b43979a5fca8c1c826cec.md)
 
-[JAVA 제어문](JAVA_생활코딩/JAVA%20%E1%84%8C%E1%85%A6%E1%84%8B%E1%85%A5%E1%84%86%E1%85%AE%E1%86%AB%20b1afb3e22d7941f6b4af6aa4850d0172.md)
+[JAVA 제어문](JAVA_생활코딩/JAVA_제어문.md)
 
-[JAVA 객체지향 프로그래밍](JAVA_생활코딩/JAVA%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20165b1cb94a6841a6962ad39721079b45.md)
+[JAVA 객체지향 프로그래밍](JAVA_생활코딩/JAVA_객체지향_프로그래밍.md)
 
 [JAVA 상속](JAVA_생활코딩/JAVA%20%E1%84%89%E1%85%A1%E1%86%BC%E1%84%89%E1%85%A9%E1%86%A8%20ab37ba58a3b84e6aa3cc2ec35b3b7f1e.md)
 
@@ -836,6 +836,6 @@
 
 [JAVA Generic](JAVA_생활코딩/JAVA%20Generic%2002a5753472034855b96b7aafff65340c.md)
 
-[JAVA 예외(Exception)](JAVA_생활코딩/JAVA%20%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC(Exception)%204a3e8392034d469fa8ead99786c1bad3.md)
+[JAVA 예외(Exception)](JAVA_생활코딩/JAVA_Exception.md)
 
-[JAVA Collections Framework](JAVA_생활코딩/JAVA%20Collections%20Framework%2061fd5b17bef84c5281fdb1d6ca240110.md)
+[JAVA Collections Framework](JAVA_생활코딩/JAVA_Collections_Framework.md)
