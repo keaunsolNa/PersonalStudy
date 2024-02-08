@@ -485,7 +485,7 @@
                 - passport.use(new LocalStrategy( … 처럼 passport.use() 라는 method에 ‘전략’을 매개 변수로 넣어 Logic을 수행할 수 있다.
     - Observer Pattern
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled.png)
         
         - Observer Pattern은 주체가 어떤 객체(subject)의 상태 변화를 관찰하다가 상태 변화가 있을 때마다 Method 등을 통해 Observer 목록에 있는 Observer들에게 변화를 알려 주는 패턴이다.
         - 여기서 주체란 객체의 상태 변화를 보고 있는 관찰자이며, Observer들이란 이 객체의 상태 변화에 따라 전달되는 메서드 등을 기반으로 ‘추가 변화 사항’이 생기는 객체들을 의미한다.
@@ -693,7 +693,7 @@
         - Proxy Pattern
             - Proxy Pattern은 대상 객체(subject)에 접근하기 전 그 접근에 대한 흐름을 가로채 대상 객체 앞단의 인터페이스 역할을 하는 Design Pattern이다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%201.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%201.png)
                 
             - 이를 통해 객체의 속성, 변환 등을 보완하며 보안, 데이터 검증, 캐싱, 로깅에 사용한다. 이는 앞서 설명한 Proxy Object로 쓰이기도 하지만 Proxy Server로도 활용된다.
                 - ⇒ Proxy Server에서의 Caching
@@ -706,7 +706,7 @@
                 - nginx는 비동기 이벤트 기반의 구조와 다수의 연결을 효과적으로 처리 가능한 Web Server이며, 주로 Node.js 서버 앞단의 Proxy Server로 활용된다.
                 - Node.js Server를 구축할 때 앞단에 nginx를 둠으로서 익명 사용자가 직접적으로 서버에 접근하는 것을 차단하고, 간접적으로 한 단계를 더 거치게 만들어 보안을 강화할 수 있다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%202.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%202.png)
                     
                     - 위 그림처럼 nginx를 Proxy Server로 둬서 실제 포트를 숨길 수 있으며, 정적 자원을 gzip 압축하거나, 메인 서버 앞단에서의 로깅을 할 수도 있다.
                 
@@ -715,7 +715,7 @@
                 - CloudFlare는 웹 서버 앞단에 Proxy Server로 두어 DDOS 공격 방어나 HTTPS 구축에 사용된다.
                 - 또한 서비스를 배포한 이후 해외에서 의심스러운 트래픽이 많이 발생할 경우, CloudFlare가 의심스러운 트래픽인지를 먼저 판단해 CAPTCHA 등을 기반으로 이를 일정 부분 막아주는 역할도 수행한다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%203.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%203.png)
                     
                     - ,위 그림처럼 사용자, 크롤러, 공격자가 웹 사이트에 접속할 때, CloudFlare를 통해 공격자로부터 보호할 수 있다.
                         
@@ -785,7 +785,7 @@
     - MVC Pattern
         - MVC Pattern은 Model, View, Controller로 이루어진 Design Pattern이다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%204.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%204.png)
             
             - Application의 구성 요소를 세 가지 역할로 구분하여 개발 프로세스에서 각각의 구성 요소에만 집중해서 개발할 수 있다. 재 사용성과 확장성이 용이하다는 장점이 있고, Application이 복잡해질수록 Model과 View의 관계가 복잡해지는 단점이 있다.
                 
@@ -809,13 +809,13 @@
     - MVP Pattern
         - MVP Pattern은 MVC Pattern으로부터 파생되었으며, MVC의 C에 해당하는 Controller가 Presenter로 교체된 Pattern이다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%205.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%205.png)
             
             - View와 Presenter는 1 : 1 관계이기 때문에 MVC Pattern보다 더 강한 결합을 지닌 Design Pattern이라고 볼 수 있다.
     - MVVM Pattern
         - MVVM Pattern은 MVC의 C에 해당하는 Controller가 View Model로 바뀐 Pattern이다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%206.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%206.png)
             
             - 여기서 View Model은 View를 더 추상화한 계층이며, MVVM Pattern은 MVC Pattern과는 다르게 Command와 Data Binding을 가지는 것이 특징이다. View와 View Model 사이의 양방향 Data Binding을 지원하며 UI를 별도의 코드 수정 없이 재사용할 수 있고 단위 테스팅하기 쉽다는 장점이 있다.
             
@@ -832,7 +832,7 @@
     
     </aside>
     
-    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%207.png)
+    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%207.png)
     
     - Declarative Programming And Functional Programming
         - Declarative Programming이란 ‘무엇을’ 풀어내는가에 집중하는 패러다임이며, “프로그램은 함수로 이루어진 것이다.”라는 명제가 담겨 있는 패러다임이기도 하다. Functional Programming은 Declarative Programming의 일종이다.
@@ -1033,7 +1033,7 @@
             
             - Throughput은 Link 내에서 성공적으로 전달된 데이터의 양을 말하며 보통 얼만큼의 트래픽을 처리했는지를 나타낸다. 즉, 많은 트래픽을 처리한다는 많은 처리량을 가진다의 의미를 가진다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%208.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%208.png)
                 
             - 단위로는 bps(bits per second)를 사용한다. 초당 전송 또는 수신 되는 비트 수라는 의미이다. Throughput은 사용자들이 많이 접속할 때마다 커지는 Traffic, Network Device 간의 대역폭, Network 중간에 발생하는 에러, 장치의 하드웨어 Spec에 영향을 받는다.
                 - Traffic : 특정 시점에 Link 내에 ‘흐르는’ 데이터의 양을 말한다. 예를 들면 서버에 저장된 파일을 Client가 다운로드할 때 발생되는 Data의 누적량.
@@ -1045,7 +1045,7 @@
                 
                 - Latency이란 요청이 처리되는 시간을 말하며 어떤 메시지가 두 장치 사이를 왕복 하는 데 걸린 시간을 말한다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%209.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%209.png)
                     
                     - 지연 시간은 매체 타입(무선, 유선), Packet 크기, Router의 Packet 처리 시간에 영향을 받는다.
     - Network Topology And Bottleneck
@@ -1054,14 +1054,14 @@
                 
                 ### Tree Topology
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2010.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2010.png)
                 
                 - Tree Topology는 Hierarchical Topology라고 하며 Tree 형태로 배치된 Network 구성을 말한다.
                 - 노드의 추가, 삭제가 쉬우며 특정 Node에 Traffic이 집중될 때 하위 Node에 영향을 끼칠 수 있다.
                 
                 ### Bus Topology
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2011.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2011.png)
                 
                 - Bus Topology는 중앙 통신 회선 하나에 여러 개의 Node가 연결되어 공유하는 Network 구성을 말하며 근거리 통신망(LAN)에서 사용한다.
                 - 설치 비용이 적고 신뢰성이 우수하며 중앙 통신 회선에 Node를 추가하거나 삭제하기 쉽다. 그러나 Spoofing이 가능한 문제점이 있다.
@@ -1070,19 +1070,19 @@
                     
                     - Spoofing은 LAN 상에서 송신부의 Packet을 송신과 관련 없는 다른 Host에 가지 않도록 하는 Switching 기능을 마비 시키거나 속여서 특정 Node에 해당 Packet이 오도록 처리하는 것을 의미한다.
                         
-                        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2012.png)
+                        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2012.png)
                         
                 
                 ### Star Topology
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2013.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2013.png)
                 
                 - Star Topology는 중앙에 있는 Node에 모두 연결된 Network 구성을 말한다.
                 - Node를 추가하거나 에러를 탐지하기 쉽고 Packet의 충돌 발생 가능성이 적다. 또한, 어떠한 Node에 장애가 발생해도 쉽게 에러를 발견할 수 있으며 장애 Node가 중앙 Node가 아닐 경우 다른 Node에 영향을 끼치는 것이 적다. 하지만 중앙 Node에 장애가 발생하면 전체 Network를 사용할 수 없으며 설치 비용이 고가이다.
                 
                 ### Ring Topology
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2014.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2014.png)
                 
                 - Ring Topology는 각각의 Node가 양 옆의 두 Node와 연결하여 전체적으로 고리처럼 하나의 연속된 길을 통해 통신을 하는 망 구성 방식이다.
                 - Data는 Node에서 Node로 이동을 하게 되며, 각각의 Node는 고리 모양의 길을 통해 Packet을 처리한다.
@@ -1090,21 +1090,21 @@
                 
                 ### Mash Topology
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2015.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2015.png)
                 
                 - Mesh Topology는 망형 Topology라고도 하며 그물 망처럼 연결되어 있는 구조이다.
                 - 한 단말 장치에 장애가 발생해도 여러 개의 경로가 존재하므로 Network를 계속 사용할 수 있고 Traffic도 분산 처리가 가능하다. 하지만 Node의 추가가 어렵고 구축 비용과 운용 비용이 고가인 단점이 있다.
         - Bottleneck
             - Bottlenect은 전체 시스템의 성능이나 용량이 하나의 구성 요소로 인해 제한을 받는 현상을 말한다. 서비스에서 이벤트를 열었을 때 Traffic이 많이 생기고 그 Traffic을 잘 관리하지 못하면 병목 현상이 생겨 사용자는 Web Site로 들어가지 못한다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2016.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2016.png)
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2017.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2017.png)
                 
     - Network Classification
         - Network는 규모를 기반으로 분류할 수 있다. 사무실과 개인적으로 소유 가능한 규모인 LAN(Local Area Network)과 서울시 등 시 정도의 규모인 MAN(Metropolitan Area Network), 그리고 세계 규모의 WAN(Wide Area Network)으로 나뉜다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2018.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2018.png)
             
             ## LAN
             
@@ -1127,7 +1127,7 @@
             
             ## Ping
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2019.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2019.png)
             
             - Ping(Packet INternet Groper)은 Network 상태를 확인하려는 대상 Node를 향해 일정 크기의 Packet을 전송하는 명령어이다. 이를 통해 해당 Node의 Packet 수신 상태와 도달하기까지 시간 등을 알 수 있으며 해당 Node까지 Network가 잘 연결되어 있는지 확인할 수 있다.
             - ping은 TCP/IP Protocol 중에 ICMP Protocol을 통해 동작하며, 이 때문에 ICMP Protocol을 지원하지 않는 기기를 대상으로는 실행할 수 없거나 네트워크 정책상 ICMP나 traceroute를 차단하는 대상의 경우 ping 테스팅은 불가능하다.
@@ -1135,7 +1135,7 @@
             
             ## netstat
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2020.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2020.png)
             
             - netstat 명령어는 접속 되어 있는 서비스들의 Network 상태를 표시하는 데 사용되며 Network 접속, Routing Table, Network Protocol 등 리스트를 보여준다. 주로 서비스의 Port가 열려 있는지 확인할 때 사용한다.
             
@@ -1143,12 +1143,12 @@
             
             - nslookup은 DNS에 관련된 내용을 확인하기 위해 쓰는 명령어이다. 특정 Domain에 Mapping된 IP를 확인하기 위해 사용한다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2021.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2021.png)
                 
             
             ## tracert
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2022.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2022.png)
             
             - Window에서는 tracert이고 Linux에서는 traceroute라는 명령어로 구동 된다. 목적지 Node까지 Network 경로를 확인할 때 사용하는 명령어이다. 목적지 Node까지 구간들 중 어느 구간에서 응답 시간이 느려지는지 등을 확인할 수 있다.
     - Network Protocol Standardization
@@ -1165,13 +1165,13 @@
     
     - Hierarchy
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2023.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2023.png)
         
         - TCP/IP Layer은 네 개의 Layer을 가지고 있으며 OSI 7 Layer와 많이 비교된다.
         - TCP/IP Layer과 달리 OSI Layer는 계층을 Application Layer를 세 개로 쪼개고 Link Layer를 Data Link Layer, Physical Layer로 나눠서 표현하는 것이 다르며, Internet Layer를 Network Layer로 부른다는 점이 다르다.
         - 이 Layer들은 특정 Layer가 변경되었을 때 다른 Layer가 영향을 받지 않도록 설계되었다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2024.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2024.png)
             
         - Application Layer
             - Application Layer는 FTP, HTTP, SSH, SMTP, DNS 등 응용 프로그램이 사용되는 Protocol Layer이며 웹 서비스, 이메일 등 서비스를 실질적으로 사람들에게 제공하는 층이다.
@@ -1184,20 +1184,20 @@
                 
                 - Virtual Circuit Switching은 각 Packet에는 가상 회선 식별자가 포함되며 모든 Packet을 전송하면 가상 회선이 해제되고 Packet들은 전송된 ‘순서대로’ 도착하는 방식을 말한다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2025.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2025.png)
                     
                 
                 ### Datagram packet Switching
                 
                 - Datagram packet Switching이란 Packet이 독립적으로 이동하며 최적의 경로를 선택하여 가는데, 하나의 메시지에서 분할 된 여러 Packet은 서로 다른 경로로 전송될 수 있으며 도착한 ‘순서가 다를 수’ 있는 방식을 의미한다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2026.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2026.png)
                     
                     ### **TCP Connection Establishment Process**
                     
                     - TCP는 신뢰성을 확보할 때 ‘3-way handshake’ 작업을 진행한다.
                         
-                        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2027.png)
+                        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2027.png)
                         
                         - SYN : Client는 Server에 Client의 ISN을 담아 SYN을 보낸다. ISN은 새로운 TCP 연결의 첫 번째 Packet에 할당된 임의의 Sequence 번호를 말하며 이는 장치마다 다를 수 있다.
                             - SYN : SYNchronization, 연결 요청 플래그
@@ -1211,7 +1211,7 @@
                         
                         - TCP가 연결을 해제할 때는 4-way handshake 과정이 발생한다.
                             
-                            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2028.png)
+                            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2028.png)
                             
                             - 1번 : Client가 Connection을 닫으려고 할 때 FIN으로 설정된 Segment를 보낸다. 그리고 Client는 FIN_WAIT_1 상태로 들어가고 Server의 응답을 기다린다.
                             - 2번 : Server는 Client로 ACK라는 승인 Segement를 보낸다. 그리고 CLOSE_WAIT 상태에 들어간다. Client가 Segement를 받으면 FIN_WAIT_2 상태에 들어간다.
@@ -1234,7 +1234,7 @@
                 
                 - Full Duplex 통신은 양쪽 장치가 동시에 송수신할 수 있는 방식을 말한다. 이는 송신로와 수신로로 나눠서 Data를 주고받으며 현대의 고속 Iternet은 이 방식을 기반으로 통신하고 있다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2029.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2029.png)
                     
                     ### CSMA/CD
                     
@@ -1248,11 +1248,11 @@
                         
                         - Twisted Pair Cabl은 하나의 케이블처럼 보이지만 실제로는 여덟 개의 구리선을 두 개씩 꼬아서 묶은 케이블을 지칭한다.
                             
-                            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2030.png)
+                            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2030.png)
                             
                         - 케이블은 구리선을 실드 처리하지 않고 덮은 UTP 케이블과 실드 처리하고 덮은 STP Cable로 나눠진다.
                             
-                            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2031.png)
+                            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2031.png)
                             
                         - Lan Cable을 꽂을 수 있는 Connector는 RJ-45 Connector라고 한다.
                         
@@ -1260,7 +1260,7 @@
                         
                         - Fiber Optic Cable은 광섬유로 만든 케이블이다. 레이저를 이용해서 통신하기에 구리선과는 비교할 수 없을 만큼의 장거리 및 고속 통신이 가능하다. 보통 100Gbps의 Data를 전송하며 광섬유 내부와 외부를 다른 밀도를 가지는 유리나 플라스틱 섬유로 제작해서 한 번 들어간 빛이 내부에서 계속적으로 반사하며 전진하여 반대편 끝까지 가는 원리를 이용한 것이다.
                             
-                            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2032.png)
+                            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2032.png)
                             
                             - 빛의 굴절률이 높은 부분이 Core, 낮은 부분이 Cladding
                 
@@ -1272,7 +1272,7 @@
                     
                     - Half Duplex은 양쪽 장치는 서로 통신할 수 있지만, 동시에는 통신할 수 없으며 한 번에 한 방향만 통신할 수 있는 방식을 말한다.
                         
-                        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2033.png)
+                        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2033.png)
                         
                     - 일반적으로 장치가 신호를 수신하기 시작하면 응답하기 전에 전송이 완료될 때까지 기다려야 한다. 또한, 둘 이상의 장치가 동시에 전송하면 충돌이 발생하여 메시지가 손실되거나 왜곡될 수 있기에 충돌 방지 시스템이 필요하다.
                     
@@ -1302,13 +1302,13 @@
                     
                     - ESS(Extended Service Set)는 하나 이상의 연결된 BSS 그룹이다. 장거리 무선 통신을 제공하며 BSS보다 더 많은 가용성과 이동성을 지원한다. 즉, 사용자는 한 장소에서 다른 장소로 이동하며 중단 없이 네트워크에 계속 연결할 수 있다.
                         
-                        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2034.png)
+                        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2034.png)
                         
                         ### Internet Frame
                         
                         - Data Link는 Internet Frame을 통해 전달 받은 Data의 에러를 검출하고 Encapsulation하며 다음과 같은 구조를 가진다.
                             
-                            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2035.png)
+                            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2035.png)
                             
                             - Preamble : Internet Frame이 시작임을 알린다.
                             - SFD(Start Frame Delimiter) : 다음 Bite부터 MAC 주소 필드가 시작됨을 알린다.
@@ -1321,7 +1321,7 @@
                 
                 - HTTP를 통해 Web Server에 있는 Data를 요청할 경우, 다음과 같은 방식으로 이루어진다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2036.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2036.png)
                     
                 - Application Layer에서 Transport Layer 계층으로 Client가 보내는 Request 값들이 Encapsulation 과정을 거쳐 전달되고, 다시 Link Layer를 통해 해당 Server와 통신을 하고, 해당 Server의 Link Layer로부터 Application까지 Decapsulation 과정을 거쳐 Data가 전송된다.
                     
@@ -1329,7 +1329,7 @@
                     
                     - Encapsulation Procedure은 상위 Layer와 Data를 하위 Layer의 Data 부분에 포함 시키고 해당 Layer의 Header를 삽입하는 과정을 의미한다.
                         
-                        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2037.png)
+                        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2037.png)
                         
                         - Application Layer의 Data가 Transport Layer로 전달되면서 Segment 또는 Datagram화 되며 TCP(L4) Header가 붙여지게 된다. 이후 Intenet Layer로 가면서 IP(L3) Header가 붙여지며 Packet화가 되고, 이후 Link Layer로 전달되면서 Frame Header와 Frame Trailer가 붙어 Frame화가 된다.
                     
@@ -1337,7 +1337,7 @@
                     
                     - Decapsulation Procedure는 하위 Layer에서 상위 Layer로 가며 각 계층의 Header 부분을 제거하는 과정을 말한다.
                         
-                        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2038.png)
+                        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2038.png)
                         
                     - Encapulation된 Data를 받게 되면 Link Layer에서부터 타고 올라오면서 Frame화된 Data는 다시 Packet화를 거쳐 Segment, Datagram화를 거쳐 Message화가 되는 Decapsulation 과정이 일어난다. 그 이후 최종적으로 사용자에게 Application의 PDU인 Message로 전달된다.
     - PDU
@@ -1348,7 +1348,7 @@
             - Internet Layer : Packet
             - Link Layer : Frame(Data Link Layer), Bit(Physical Layer)
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2039.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2039.png)
         
         - PDU 중 아래 Layer인 Bit로 송수신하는 것이 모든 PDU 중 가장 빠르고 효율성이 높다. 하지만 Application Layer에서는 문자열을 기반으로 송수신을 하는데, 그 이유는 Header에 authorization 값 등 다른 값들을 넣는 확장이 쉽기 때문이다.
 - Network Device
@@ -1364,7 +1364,7 @@
         
         - Switch는 여러 장비를 연결하고 데이터 통신을 중재하며 목적지가 연결된 Port로만 전기 신호를 보내 Data를 전송하는 통신 네트워크 장비다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2040.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2040.png)
             
         - L7 Siwtch는 Load Balancer라고도 하며, Server의 부하를 분산하는 기기다. Client로부터 오는 요청들을 뒤쪽의 여러 Server로 나누는 역할을 하며 시스템이 처리할 수 있는 Traffic 증가를 목표로 한다.
         - URL, Server, Cache, Cookie들을 기반으로 Traffic을 분산한다. 바이러스, 불필요한 외부 Data 등을 걸러내는 필터링 기능 또한 가지고 있으며 응용 프로그램 수준의 Traffic 모니터링도 가능하다.
@@ -1385,7 +1385,7 @@
         - Load Balancer는 대표적인 기능으로 Server redundancy를 들 수 있다. 서비스를 안정적으로 운용하기 위해서는 2대 이상의 Server는 필수적이다.
         - Load Balancer는 2대 이상의 Server를 기반으로 가상 IP를 제공하고 이를 기반으로 안정적인 서비스를 제공한다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2041.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2041.png)
             
     - Devices that handle the Internet layer
         
@@ -1407,14 +1407,14 @@
         
         ### L2 Switch
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2042.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2042.png)
         
         - L2 Switch는 장치들의 MAC 주소를 MAC 주소 Table을 통해 관리하며, 연결된 장치로부터 Packet이 왔을 때 Packet 전송을 담당한다.
         - IP 주소를 이해하지 못해 IP 주소를 기반으로 Routing은 불가능하며 단순히 Packet의 MAC Address를 읽어 Switching 하는 역할을 한다. 목적지가 MAC Address Table에 없다면 전체 Port에 전달하고 MAC Address Table의 주소는 일정 시간 이후 삭제하는 기능도 있다.
         
         ### Bridge
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2043.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2043.png)
         
         - Bridge는 두 개의 근거리 통신망(LAN)을 상호 접속할 수 있도록 하는 통신망 연결 장치로, Port와 Port 사이의 다리 역할을 하며 장치에서 받아온 MAC Address를 MAC Address Table로 관리한다.
         - Bridge는 통신망 범위를 확대하고 서로 다른 LAN 등으로 이루어진 하나의 통신망을 구축할 때 쓰인다.
@@ -1422,20 +1422,20 @@
         
         ### NIC
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2044.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2044.png)
         
         - LAN 카드라고 하는 NIC(Network Interface Card)는 2대 이상의 Computer Network를 구성하는 데 사용하며, Network와 빠른 속도로 Data를 송수신 할 수 있도록 Computer 내에 설치하는 확장 카드다.
         - 각 LAN 카드에는 각각을 구분하기 위한 고유의 식별 번호인 AMC Address가 있다.
         
         ### Repeater
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2045.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2045.png)
         
         - Repeater는 들어오는 약해진 신호 정도를 증폭하여 다른 쪽으로 전달하는 장치를 말한다. Repeater를 통해 Packet이 더 멀리 갈 수 있지만, 광케이블의 보급에 따라 현재는 잘 쓰이지 않는 장치다.
         
         ### AP
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2046.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2046.png)
         
         - AP(Access Point)는 Packet을 복사하는 기기다.
         - AP에 유선 LAN을 연결한 후 다른 장치에서 무선 LAN 기술을 사용하여 무선 네트워크 연결을 할 수 있다.
@@ -1445,15 +1445,15 @@
         - ARP(Address Resolution Protocol)란 IP Address로부터 MAC 주소를 구하는 IP와 MAC 주소의 다리 역할을 하는 Protocol이다.
         - ARP를 통해 가상 주소인 IP 주소를 실제 주소인 MAC Address로 변환한다. 이와 반대로 RARP(Reverse Address Resolution Protocol)를 통해 실제 주소인 MAC 주소를 가상 주소인 IP Address로 변환하기도 한다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2047.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2047.png)
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2048.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2048.png)
             
             - 위 그림처럼 장치 A가 ARP Request Broadcast를 보내서 IP 주소인 120.70.80.3에 해당하는 MAC Address를 찾는다. 그 뒤 해당 주소에 맞는 장치 B가 ARP Reply Unicast를 통해 MAC Address 주소를 반환하는 과정을 거쳐 IP 주소에 맞는 MAC Address를 찾게 된다.
     - Hob by hob routing
         - IP 주소를 통해 통신하는 과정을 Hop by hop 통신이라고 한다. 여기서 Hop이란 통신망에서 각 Packet이 여러 개의 Router를 건너가는 모습을 비유적으로 표현한 것이다. 다음 그림처럼 수많은 Sub-Network 안에 있는 Router의 Routing Table IP를 기반으로 Packet을 전달하고 또 전달해나가며 Routing을 수행하며 최종 목적지까지 Packet을 전달한다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2049.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2049.png)
             
         - 즉, 통신 장치에 있는 Routing Table의 IP를 통해 시작 주소부터 시작하여 다음 IP로 계속해서 이동하는 Routing 과정을 거쳐 Packet이 최종 목적지까지 도달하는 통신을 말한다.
             
@@ -1465,30 +1465,30 @@
             
             - Gateway는 서로 다른 통신망, Protocol을 사용하는 Network 간의 통신을 가능하게 하는 관문 역할을 하는 Computer나 소프트웨어를 두루 일컫는 용어다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2050.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2050.png)
                 
             - 사용자는 Internet에 접속하기 위해 수많은 톨게이트인 Gateway를 거쳐야 하며 Gateway는 서로 다른 Network 상의 통신 Protocol을 변환해주는 역할을 하기도 한다.
     - IP Address System
         - IP 주소는 IPv4와 IPv6로 나뉜다. IPv4는 32Bit를 8Bit 단위로 점을 찍어 표기하며, 123.45.67.89 같은 방식으로 IP 주소를 나타낸다. IPv6는 64Bit를 16Bit 단위로 점을 찍어 표기하며, 2001:db8::ff00:42:8329같은 방식으로 IP 주소를 나타낸다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2051.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2051.png)
             
         
         ### Classful Network Addressing
         
         - IP 주소 체계는 과거를 거쳐 발전해오고 있으며 처음에는 A, B, C, D, E 다섯 개의 Class로 구분하는 Classful Network Addressing을 사용했다. 앞에 있는 부분을 Network Address, 그 뒤에 있는 부분을 Host Address로 놓아 사용한다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2052.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2052.png)
             
         - Class A, B, C는 일대일 통신으로 사용되고 Class D는 Multicast 통신, Class E는 앞으로 사용할 예비용으로 쓰는 방식이다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2053.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2053.png)
             
             - 맨 왼쪽에 있는 비트는 ‘구분 비트’로, 앞의 그림처럼 Class A의 경우 맨 왼쪽에 있는 Bit가 0이 된다. Class B는 10이며, Class C는 110이다. 이를 통해 Class 간의 IP가 나눠진다.
             - Class A에서 가질 수 있는 IP 범위는 00000000.00000000.00000000.00000000 ~ 01111111.11111111.11111111.11111111이다. 이를 십진수로 표현하면 0.0.0.0 ~ 127.255.255.255이다.
             - 또한, Network의 첫 번째 주소는 Network 주소로 사용되고 가장 마지막 주소는 BroadCast용 주소로 Network에 속해 있는 모든 컴퓨터에 데이터를 보낼 때 사용된다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2054.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2054.png)
                 
                 ### DHCP
                 
@@ -1499,7 +1499,7 @@
                 
                 - NAT(Network Address Translation)는 Packet이 Routing 장치를 통해 전송되는 동안 Pacet의 IP 주소 정보를 수정하여 IP 주소를 다른 주소로 Mapping하는 방법이다. IPv4 주소 체계만으로는 많은 주소들을 모두 감당하지 못 하는 단점이 있는데, 이를 해결하기 위해 NAT로 공인 IP와 사설 IP로 나눠 많은 주소를 처리한다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2055.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2055.png)
                     
                     ### Router And NAT
                     
@@ -1516,7 +1516,7 @@
     - HTTP/1.0
         - HTTP/1.0은 기본적으로 한 연결당 하나의 요청을 처리하도록 설계되었다. 이는 RTT 증가를 불러오게 되었다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2056.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2056.png)
             
             - Server로부터 파일을 가져올 때마다 TCP의 3-way handshake를 계속해서 열어야 하기 때문에 RTT가 증가하는 단점이 있었다.
                 - ⇒ RTT : Packet이 목적지에 도달하고 나서 다시 출발지로 돌아오기까지 걸리는 시간이며, Packet 왕복 시간
@@ -1573,7 +1573,7 @@
     - HTTP/1.1
         - 매번 TCP 연결을 하는 것이 아닌, 한 번 TCP 초기화를 한 이후 keep-alive라는 옵션으로 여러 개의 파일을 송수신할 수 있게 바뀌었다. HTTP/1.0에서도 keep-alive는 있었지만 표준화가 되어 있지 않았고, HTTP/1.1부터 표준화가 되어 기본 옵션으로 설정되었다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2057.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2057.png)
             
             - 위 그림처럼 한 번 TCP 3-way handshake가 발생하면 그 다음부터 발생하지 않는다. 하지만 문서 안에 포함된 다수의 Resource(이미지, 동영상, css파일, js 파일 등)을 처리하려면 요청할 Resource 개수에 비례해서 대기 시간이 길어지는 단점이 있다.
             
@@ -1581,7 +1581,7 @@
             
             - HOL Blocking(Head Of Line Blocking)은 Network에서 같은 Queue에 있는 Packet이 그 첫 번째 Packet에 의해 지연될 때 발생하는 성능 저하 현상을 말한다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2058.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2058.png)
                 
             
             ### Heavy Header Structure
@@ -1594,9 +1594,9 @@
             
             - Multiplexing이란 여러 개의 Stream을 사용하여 송수신하는 것이다. 이를 통해 특정 Stream의 Packet이 손실 되었다고 하더라도 해당 Stream에만 영향을 미치고 나머지 Stream은 멀쩡하게 동작할 수 있다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2059.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2059.png)
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2060.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2060.png)
                 
             - 이를 통해 단일 연결을 사용하여 병렬로 여러 요청을 받을 수 있으며 응답을 줄 수 있다. 이렇게 되면 HTTP/1.x에서 발생하는 문제인 HOL Blocking을 해결할 수 있다.
                 
@@ -1604,7 +1604,7 @@
                 
                 - HTTP/1.x에는 Header의 크기가 크다는 문제가 있었다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2061.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2061.png)
                     
                     - 이를 HTTP/2에서는 Header Compress를 써서 해결하는데, Huffman Coding 알고리즘을 사용하는 HPACK 압축 형식을 가진다.
                 
@@ -1616,7 +1616,7 @@
                 
                 - HTTP/1.1 에서는 Client가 Server에 요청을 해야 파일을 다운로드 받을 수 있었다면, HTTP/2는 Client의 요청 없이 서버가 바로 Resource를 Push할 수 있다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2062.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2062.png)
                     
     - HTTPS
         
@@ -1629,7 +1629,7 @@
             - SSL(Secure Socket Layer)은 SSL 1.0부터 SSL 2.0, SSL 3.0, TLS(Transport Layer Security Protol) 1.0, TLS 1.3까지 버전이 올라가며 마지막으로 TLS로 명칭이 변경되었으나, 보통 이를 합쳐 SSL/TLS라고 부른다.
             - SSL/TLS는 Transport Layer에서 보안을 제공하는 Protocol이다. Client와 Server가 통신할 때 SSL/TLS를 통해 제3자가 Message를 도청하거나 변조하지 못하도록 한다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2063.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2063.png)
                 
             - SSL/TLS를 통해 공격자가 Server인 척하며 사용자 정보를 가로채는 Network상의 ‘Interceptor’를 방지할 수 있다.
             - SSL/TLS는 Secure Session을 기반으로 Data를 암호화하며 Secure Session이 만들어질 때 인증 메커니즘, 키 교환 암호화 알고리즘, 해싱 알고리즘이 사용된다.
@@ -1638,7 +1638,7 @@
                 
                 - Secure Session이란 보안이 시작되고 끝나는 동안 유지되는 세션을 말하고, SSL/TLS는 handshake를 통해 Secure Session을 생성하고 이를 기반으로 상태 정보 등을 공유한다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2064.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2064.png)
                     
                 - Client와 Server와 키를 공유하고 이를 기반으로 인증, 인증 확인 등의 작업이 일어나는 단 한 번의 1-RTT가 생긴 후 데이터를 송수신하는 것을 볼 수 있다.
                 - Client에서 Cypher Suites를 Server에 전달하면 Server는 받은 Cypher Suites의 암호화 알고리즘 리스트를 제공할 수 있는지 확인한다. 제공할 수 있다면 Server에서 Client로 인증서를 보내는 인증 메커니즘이 시작되고 이후 해싱 알고리즘 등으로 암호화된 데이터의 송수신이 시작된다.
@@ -1677,11 +1677,11 @@
                 
                 - Diffie-Hellman key exchange Encryption Algorithm은 암호키를 교환하는 하나의 방법이다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2065.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2065.png)
                     
                 - 앞의 식에서 g와 x와 p를 안다면 y는 구하기 쉽지만, g와 y와 p만 안다면 x를 구하기는 어렵다는 원리에 기반한 알고리즘이다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2066.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2066.png)
                     
                 - 앞의 그림처럼 처음에 공개 값을 공유하고 각자의 비밀 값과 혼합한 후 혼합 값을 공유한다. 그다음 각자의 비밀 값과 또 혼합한다. 그 이후 공통의 암호키인 PSK(Pre-Shared Key)가 생성된다.
                 
@@ -1693,7 +1693,7 @@
                 
                 - SHA-256 알고리즘은 해시 함수의 결과값이 256 Bit인 알고리즘이며 비트 코인을 비롯한 많은 블록체인 시스템에서도 사용한다. SHA-256 알고리즘은 해싱을 해야 할 Message에 1을 추가하는 등 전처리를 하고 전처리된 Message를 기반으로 해시를 반환한다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2067.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2067.png)
                     
                 - TLS 1.3은 사용자가 이전에 방문한 사이트로 다시 방문한다면 SSL/TLS에서 Secure Session을 만들 때 걸리는 통신을 하지 않아도 된다. 이를 0-RTT라고 한다.
         - HTTPS also helpful with SEO
@@ -1702,19 +1702,19 @@
             
             ### C**anonical Settings**
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2068.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2068.png)
             
             - 앞처럼 사이트 link에 canonical을 설정해야 한다.
             
             ### Meta Settings
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2069.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2069.png)
             
             - Apple Site Meta Settings
     - HTTP/3
         - HTTP/3은 HTTP/1.1 및 HTTP/2와 함께 World Wide Web에서 정보를 교환하는데 사용되는 HTTP의 세 번째 버전이다. TCP 위에서 돌아가는 HTTP/2와는 달리 HTTP/3은 QUIC Layer 위에서 돌아가며, TCP 기반이 아닌 UDP 기반으로 돌아간다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2070.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2070.png)
             
         - 또한, HTTP/2에서 장점이었던 Multiplexing을 가지고 있으며 초기 연결 설정 시 지연 시간 감소라는 장점이 있다.
         
@@ -1722,7 +1722,7 @@
         
         - QUIC은 TCP를 사용하지 않기 때문에 통신을 시작할 때 3-way handshake 과정을 거치지 않는다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2071.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2071.png)
             
         - QUIC은 첫 연결 설정에 1-RTT만 소요된다. Client가 Server에 어떤 신호를 한 번 주고, Server도 거기에 응답하기만 하면 바로 본 통신을 시작할 수 있다는 것.
         - QUIC은 FEC(Forward Error Correction)이 적용되었다. 이는 전송한 Packet이 손실되었다면 수신 측에서 에러를 검출하고 수정하는 방식이며, 열악한 Network 환경에서도 낮은 Packet 손실률을 자랑한다.
@@ -1741,7 +1741,7 @@
         
         ### 운영체제의 구조
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2072.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2072.png)
         
         ### System Call
         
@@ -1755,11 +1755,11 @@
             
             - System call이 작동할 때 modebit을 참고해서 user mode와 kernel mode를 구분한다. modebit은 1 또는 0의 값을 가지는 flag 변수로, I/O Device는 운영체제를 통해서만 작동해야 한다. modebit의 0은 kernel 모드, 1은 user mode라고 설정된다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2073.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2073.png)
                 
     - Elements of a computer
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2074.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2074.png)
         
         ### CPU
         
@@ -1779,7 +1779,7 @@
             
             ### CPU operation processing
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2075.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2075.png)
             
             1. Contol Unit가 memory에 계산할 값을 로드한다. 또한, Register에도 로드한다. 
             2. Contol Unit가 register에 있는 값을 계산하라고 ALU에 명령한다
@@ -1819,7 +1819,7 @@
 - Memory
     - Memory Layer
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2076.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2076.png)
         
         - Register : CPU 안에 있는 작은 메모리, 휘발성, 속도 가장 빠름, 기억 용량이 가장 적음
         - Cache : L1, L2 cache를 지칭한다. 휘발성, 속도 빠름, 기억 용량이 적음.
@@ -1866,7 +1866,7 @@
                 
                 - Cache에서 원하는 데이터를 찾았다면 Cache hit, 해당 데이터가 Cache에 없다면 주 메모리로 가서 데이터를 찾아오는 것을 Cache miss라고 한다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2077.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2077.png)
                     
                 - 위 그림처럼 Cache hit를 하게 되면 해당 데이터를 제어장치를 통해 가져오게 된다. Cache hit의 경우 위치도 가깝고 CPU 내부 버스를 기반으로 작동하기에 빠르다. 반면 Cache miss가 발생되면 메모리에서 가져오게 되는데, 이는 시스템 버스를 기반으로 작동하기에 느리다.
                 
@@ -1905,7 +1905,7 @@
         - Virtual Memory
             - Virtual Memory는 메모리 관리 기법의 하나로 컴퓨터가 실제 이용 가능한 메모리 자원을 추상화하여 이를 사용하는 사용자들에게 매우 큰 메모리로 보이게 만드는 것을 말한다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2078.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2078.png)
                 
             - 이때 가상적으로 주어진 주소를 logical address라고 하며, 실제 메모리 상에 있는 주소를 physical address라고 한다. 가상 주소는 MMU에 의해 실제 주소로 변환되며, 이 덕분에 사용자는 실제 주소를 의식할 필요 없이 프로그램을 구축할 수 있게 된다.
             - 가상 메모리는 가상 주소와 실제 주소가 매핑되어 있고 프로세스의 주소 정보가 들어 있는 page table로 관리된다. 이때 속도 향상을 위해 TLB를 사용한다.
@@ -1927,7 +1927,7 @@
         - Thrashing
             - Thrashing은 memory의 Fault rate가 높은 것을 의미하며, 이는 컴퓨터의 심각한 성능 저하를 초래한다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2079.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2079.png)
                 
             - Thrashing은 memory에 너무 많은 process가 동시에 올라가게 되면 swapping이 너무 많이 일어나서 발생하는 것이다. Page Fault가 일어나면 CPU 이용률이 낮아지며, CPU 이용률이 낮아지면 운영체제는 가용성을 더 높이기 위해 더 많은 Process를 memory에 올리게 된다. 이와 같은 악순환이 반복되면 Thrashing이 일어나게 된다.
             - 이를 해결하기 위한 방법으로는 HDD를 SDD로 전환하거나, working set과 PFF가 있다.
@@ -1989,7 +1989,7 @@
             
             ### NUR
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2080.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2080.png)
             
             - LRU에서 발전한 NUR(Not Used Recently) 알고리즘은 일명 clock 알고리즘이라고 한다. 먼저 0과 1을 가진 비트를 두며, 1은 최근에 참조되었음, 0은 참조되지 않음을 의미한다. 시계 방향으로 돌면서 0을 찾고, 0을 찾는 순간 해당 프로세스를 교체하고 해당 부분을 1로 바꾸는 알고리즘이다.
             
@@ -2009,7 +2009,7 @@
         - Process는 프로그램이 memory에 올라가 인스턴스화된 것을 말한다.
         - 프로그램을 만드는 과정은 만드는 언어마다 다를 수 있으며 Compile 언어인 C언어의 경우 컴파일러가 컴파일 과정을 통해 소스 코드를 기계어로 번역하여 실행할 수 있는 파일을 만들게 된다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2081.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2081.png)
             
         
         ### Preprocessing
@@ -2034,7 +2034,7 @@
             - Dynamic Libarary는 프로그램 실행 시 필요할 때만 DLL을 참조하여 Library를 사용하는 방법이다. 메모리 효율성에서의 장점을 지니지만 외부 의존도가 높아진다.
     - State of the Process
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2082.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2082.png)
         
         ### Create State
         
@@ -2073,7 +2073,7 @@
         - Terminated State는 memory와 CPU 소유권을 모두 놓고 가는 상태를 말한다. 종료는 자연스럽게 종료되는 것도 있지만 부모 Process가 자식 process를 강제시키는 비자발적 종료(abort)로 종료되는 것도 있다. 자식 Process에 할당된 자원의 한게치를 넘어서거나 부모 Process가 종료되거나 사용자가 process, kill 등 여러 명령어로 process를 종료할 때 발생한다.
     - Memory Structure of Process
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2083.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2083.png)
         
         ### Stack and Heap
         
@@ -2106,7 +2106,7 @@
             
             - Context Switching은 PCB를 교환하는 과정을 의미한다. 한 Process에 할당된 시간이 끝나거나 Interrupt에 의해 발생한다. Computer는 많은 프로그램을 동시에 실행하는 것처럼 보이지만 어떠한 시점에서 실행되고 있는 Process는 단 한개이며, 많은 Process가 동시에 구동되는 것처럼 보이는 것은 다른 Process와의 Context Switching이 매우 빠른 속도로 실행되기 때문이다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2084.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2084.png)
                 
             - Context Switching이 일어날 때는 유휴 시간(idle time)이 발생한다. 또한 Context Switching에 드는 비용이 더 있는데, 이를 Cache Miss라고 한다.
                 
@@ -2137,7 +2137,7 @@
                 
                 - Shared memory는 여러 Process에 동일한 메모리 블록에 대한 접근 권한이 부여되어 Process가 서로 통신할 수 있도록 공유 메모리를 생성해서 통신하는 것을 말한다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2085.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2085.png)
                     
                 - 기본적으로는 각 Process의 메모리를 다른 Process가 접근할 수 없지만 Shared memory를 통해 여러 Process가 하나의 메모리를 공유할 수 있다. IPC 방식 중 어떠한 매개체를 통해 데이터를 주고받는 것이 아닌 메모리 자체를 공유하기 때문에 불필요한 데이터 복사의 오버헤드가 발생하지 않아 가장 빠르며 같은 메모리 영역을 여러 프로세스가 공유하기 때문에 동기화가 필요하다.
                 - 하드웨어 관점에서는 RAM을 가리키기도 한다.
@@ -2168,7 +2168,7 @@
         
         - Thread는 Process의 실행 가능한 가장 작은 단위다. Process는 여러 Thread를 가질 수 있다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2086.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2086.png)
             
         - Code, Data, Stack, Heap을 각각 생성하는 Process와는 달리 Thread는 Code, Data, Heap은 Thread끼리 서로 공유한다. 그 외의 영역은 각각 생성된다.
         
@@ -2195,7 +2195,7 @@
             
             - mutex는 Process나 Thread가 공유 자원을 lock()을 통해 잠금 설정하고, 사용한 후에는 unlock()을 통해 잠금 해제하는 객체이다. 잠금이 설정되면 다른 Process나 Thread는 잠김 코드 영역에 접근할 수 없고 해제는 그와 반대이다. 또한 mutex는 잠금 또는 잠금 해제라는 상태만을 가진다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2087.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2087.png)
                 
             
             ### Semaphore
@@ -2203,7 +2203,7 @@
             - Semaphore는 일반화된 mutex이다. 간단한 정수 값과 두 가지 함수 wait(P 함수라고도 한다.) 및 signal(V 함수라고도 한다)로 Critical Section에 대한 접근을 처리한다.
             - wait()는 자신의 차례가 올 때까지 기다리는 함수, signal()은 다음 Process로 순서를 넘겨주는 함수다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2088.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2088.png)
                 
                 - Process나 Thread나 Critical Section에 접근하면 Semaphore에서 wait() 작업을 수행하고 Process나 Thread나 공유 자원을 해제하면 Semaphore에서 signal() 작업을 수행한다. Semaphore에는 조건 변수가 없고 Process나 Thread가 Semaphore 값을 수정할 때 다른 Process나 Thread는 동시에 Semaphore 값을 수정할 수 없다.
                     
@@ -2303,7 +2303,7 @@
         - Domain이란 Relation에 포함된 각각의 속성들이 가질 수 있는 값의 집합을 말한다.
     - Field And Recode
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2089.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2089.png)
         
         - 회원이라는 Entitiy는 member라는 Table로 Attibute인 이름, 아이디 등을 가지고 있으며 name, ID, address 등의 Field를 가진다. 그리고 이 Table에 쌓이는 row 단위의 Data를 Recode라고 한다. 또한, Recode를 Tuple이라고도 한다.
             
@@ -2357,7 +2357,7 @@
     - Relaction
         - DataBase에는 여러 개의 Table이 있고, 이러한 Table은 서로의 관계가 정의되어 있다. 이러한 관계를 관계 화살표로 나타낸다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2090.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2090.png)
             
         
         ### 1:1 Realaction
@@ -2375,7 +2375,7 @@
     - Key
         - Table 간의 관게를 조금 더 명확하게 하고 Table 자체의 Index를 위해 설정된 장치로 Primary Key, Foreign Key, Candidate Key, Super Key, Alternate Key가 있다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2091.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2091.png)
             
         
         ### Primary Key
@@ -2485,7 +2485,7 @@
             - Isolation은 Transaction 수행 시 서로 끼어들지 못하는 것을 말한다. 복수의 병렬 Transaction은 서로 격리되어 마치 순차적으로 실행되는 것처럼 작동되어야 하고, DataBase는 여러 사용자가 같은 Data에 접근할 수 있어야 한다.
             - Isolation은 여러 개의 격리 수준으로 나뉘어 Isolation을 보장한다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2092.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2092.png)
                 
             - 격리 수준은 SERIALIZABLE, REPEATABLE_READ, READ_COMMITTED, READ_UNCOMMITTED가 있으며 위로 갈수록 동시성이 강해지지만 격리성은 약해지고, 아래로 갈수록 동시성은 약해지고 격리성은 강해진다.
                 
@@ -2560,7 +2560,7 @@
             - C, C++로 만들어졌으며 MyISAM Index 압축 기술, B-Tree 기반의 Index, Thread 기반의 메모리 할당 시스템, 매우 빠른 Join, 최대 64개의 Index를 제공한다. 대용량 DataBase를 위해 설계되어 있고 Rollback, Commit, 이중 암호 지원 보안 등의 기능을 제공하며 많은 서비스에서 사용한다.
             - MySQL Storage Engine Architecture
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2093.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2093.png)
                 
             - MySQL의 Storage Engine은 Module식 Architecture로 쉽게 Storage Engine을 바꿀 수 있으며 Data Warehousing, Trancation 처리, 고가용성 처리에 강점을 두고 있다. Storage Engine 위에는 Connector API 및 서비스 계층을 통해 MySQL DataBase와 쉽게 상호 작용할 수 있다.
             - 또한, MySQL은 Query Cache를 지원해서 입력된 Query 문에 대한 전체 결과 집합을 저장하기 때문에 사용자가 작성한 Query가 Cache에 있는 Query와 동일하면 서버는 단순히 구문 분석, 최적화 및 실행을 건너뛰고 Cache의 출력만 표시한다.
@@ -2591,7 +2591,7 @@
     - B-Tree
         - Index는 보통 B-Tree라는  자료 구조로 이루어져 있다. 이는 Root Node, Leaf Node, Branch Node로 나뉜다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2094.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2094.png)
             
         - Tree 탐색은 맨 위 Root Node부터 탐색이 일어나며 Branch Node를 거쳐 Reaf Node까지 내려온다. 목표 값보다 같거나 클 때까지 ≤를 기반으로 처음 Root Node에서 Branch Node를 통해 아래 Node로 내려와 정렬된 값을 기반으로 탐색한다. 이렇게 Root Node부터 시작하여 마지막 Leaf Node에 도달해서 목표 값이 가리키는 Data Pointer를 통해 결괏값을 반환하게 된다.
             
@@ -2686,7 +2686,7 @@
         - Sort Merge Join이란 각각의 Table을 Join할 Field 기준으로 정렬하고, 정렬이 끝난 이후에 Join 작업을 수행하는 Join이다. Join할 때 쓸 적절한 Index가 없고 대용량의 Table들을 Join하고, Join 조건으로 <, > 등 범위 비교 연산자가 있을 때 사용한다.
     - Hash Join
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2095.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2095.png)
         
         - Hash Join은 Hash Table을 기반으로 Join하는 방법이다. 두 개의 Table을 Join한다고 했을 때 하나의 Table이 Memory에 온전히 들어간다면 보통 Nested Loop Join보다 더 효율적이다. (단, Memory에 올릴 수 없을 정도로 크다면 디스크를 사용하는 비용이 발생된다.)
         - 동등(=) Join에서만 사용할 수 있다.
@@ -2724,7 +2724,7 @@
         
         ### Time complexity speed comparison
         
-        ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2096.png)
+        ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2096.png)
         
         - 위 그림처럼 O(1)과 O(2n)은 입력 크기가 커질수록 차이가 많이 나는 것을 볼 수 있다.
     - Space Complexity
@@ -2738,7 +2738,7 @@
     - Time Complexity in Data Structures
         - 자료 구조를 사용할 때는 시간 복잡도를 잘 생각해서 사용해야 한다. 아래는 자주 쓰는 자료 구조의 시간 복잡도에 대한 도표이다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2097.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2097.png)
             
 - Linear Data Structure
     
@@ -2750,7 +2750,7 @@
     - Linear List
         - Linear List는 데이터를 감싼 Node를 Pointer로 연결해서 공간적인 효율성을 극대화시킨 자료 구조이다. 삽입과 삭제가 O(1)이 걸리며 탐색에는 O(n)이 걸린다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2098.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2098.png)
             
             - 위 그림처럼 prev pointer와 next pointer로 앞과 뒤의 Node를 연결시킨 것이 Linear List이며, Linear List는 Single Linear List, Doubly Linked List, Doubly Circular Linked List가 있다. 맨 앞에 있는 Node를 Head라고 한다.
                 - Single Linked List : next pointer만 가진다.
@@ -2765,7 +2765,7 @@
             
             - Direct Access라고 하는 Random Access는 동일한 시간에 Array와 같은 순차적인 데이터가 있을 때 임의의 Index에 해당하는 데이터에 접근할 수 있는 기능이다. 이는 데이터를 저장된 순서대로 검색해야 하는 Sequential Access와는 반대이다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%2099.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%2099.png)
                 
             
             ### Compare Array and Linked List
@@ -2793,7 +2793,7 @@
             
             ### Vertex And Edge
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%20100.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%20100.png)
             
             - 어떠한 곳에서 어떠한 곳으로 무언가를 통해 간다고 했을 때 어떠한 곳은 Vertex, 무언가는 Edge가 된다.
             - 이 때 하나의 Vertex에서 다른 Vertex로 가는 방향이 단방향이면 단방향 Edge, 양방향이면 양방향 Edge라고 한다.
@@ -2809,7 +2809,7 @@
             
             ### Characteristics of the Tree
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%20101.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%20101.png)
             
             1. 부모, 자식 계층 구조를 가진다. 위 그림을 보면 5번 node는 6번 node와 7번 node의 부모 node이고, 6번 node와 7번 node는 5번 node의 자식 node이다. 같은 경로상에서 어떤 node보다 위에 있으면 부모, 아래에 있으면 자식 node가 된다. 
             2. V - 1 = E라는 특징이 있다. Edge 수는 Node 수 - 1이다. 
@@ -2833,7 +2833,7 @@
             
             ### Tree Height and Depth
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%20102.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%20102.png)
             
             1. Depth : Tree에서의 Depth는 각 node마다 다르며, Root node부터 특정 node까지 최단 거리로 갔을 때의 거리를 말한다. 예를 들어 4번 node의 Depth는 2가 된다. 
             2. Height : Tree의 Height는 Root node부터 Leaf node까지 거리 중 가장 긴 거리를 의미하며, 앞 그림의 Tree Height는 3이다. 
@@ -2844,7 +2844,7 @@
             
             - Binary Tree는 자식의 node 수가 두 개 이하인 Tree를 의미하며, 이를 다음과 같이 분류한다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%20103.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%20103.png)
                 
                 1. Full Binary tree : 자식 node가 0 또는 두 개인 Binary Tree
                 2. Complete Binary Tree : 왼쪽에서부터 채워져 있는 Binary Tree. 마지막 Level을 제외하고는 모든 Level이 완전히 채워져 있으며, 마지막 Level의 경우 왼쪽부터 채워져 있다. 
@@ -2856,18 +2856,18 @@
                 
                 - BST, Binary Search Tree는 node의 오른쪽 하위 Tree에는 node 값보다 큰 값이 있는 node만 포함되고, 왼쪽 하위 트리에는 node 값보다 작은 값이 들어 있는 Tree를 말한다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%20104.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%20104.png)
                     
                 - 이 때 왼쪽 및 오른쪽 하위 Tree도 해당 특성을 가진다. 이렇게 두면 검색을 하기에 용이하다. 보통 요소를 찾을 때 Binary Search Tree의 경우 O(logn)이 걸린다. 하지만 최악의 경우 O(n)이 걸린다. 그 이유는 Binary Search Tree는 삽입 순서에 따라 선형적일 수 있기 때문이다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%20105.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%20105.png)
                     
                 
                 ### AVL Tree
                 
                 - AVL Tree(Adelson-Velsky and Landis Tree)는 앞서 설명한 최악의 경우 선형적인 Tree가 되는 것을 방지하고 스스로 균형을 잡는 Binary Search Tree다. 두 자식 sub-tree의 Height는 항상 최대 1만큼 차이 난다는 특징이 있다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%20106.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%20106.png)
                     
                 - Binary Search Tree는 선형적인 Tree 형태를 가질 때 최악의 경우 O(n)의 Time Complexity를 가진다. 이러한 최악의 경우를 배제하는 Tree가 AVL Tree. 탐색, 삽입, 삭제 모두 시간 복잡도가 O(logn)이며, 삽입, 삭제를 할 때마다 균형이 안 맞는 것을 맞추기 위해 Tree 일부를 왼쪽 혹은 오른쪽으로 회전시키며 균형을 잡는다.
                 
@@ -2875,7 +2875,7 @@
                 
                 - Red Black Tree는 Balanced Binary Tree로 탐색, 삽입, 삭제 모두 시간 복잡도가 O(logn)이다. 각 Node는 빨간색 또는 검은색의 색상을 나타내는 추가 비트를 저장하며, 삽입 및 삭제 중에 Tree가 균형을 유지하도록 하는 데 사용된다. C++ STL의 set, multiset, map, and multimap이 이 Red Black Tree를 이용하여 구현되어 있다.
                     
-                    ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%20107.png)
+                    ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%20107.png)
                     
     - Heap
         - Heap은 Complete Binary Tree 기반의 자료 구조이며, 최소힙과 최대힙 두 가지가 있고 해당 힙에 따라 특정한 특징을 지킨 Tree를 말한다.
@@ -2886,7 +2886,7 @@
             
             - Heap에 새로운 요소가 들어오면, 일단 새로운 Node를 Heap의 마지막 node에 이어서 삽입한다. 이 새로운 node를 부모 node들과의 크기를 비교하며 교환해서 Heap의 성질을 만족시킨다.
                 
-                ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%20108.png)
+                ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%20108.png)
                 
             
             ### Delete of Max Heap
@@ -2895,7 +2895,7 @@
     - Priority Queue
         - Priority Queue는 우선순위 대기열이라고도 하며, 대기열에서 우선순위가 높은 요소가 우선순위가 낮은 요소보다 먼저 제공되는 자료 구조이다.
             
-            ![Untitled](%E1%84%86%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20CS%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8%20%E1%84%82%E1%85%A9%E1%84%90%E1%85%B3%20f254c9a77ad74a58aa2924c0d65c2a61/Untitled%20109.png)
+            ![Untitled](면접을_위한_CS_전공지식_노트/Untitled%20109.png)
             
         - 우선순위 큐는 힙을 기반으로 구현된다.
     - Map
