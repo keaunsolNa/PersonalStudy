@@ -54,7 +54,7 @@
 
 [자료구조 & 알고리즘](Personal_Study/자료구조&알고리즘.md)
 
-[통신/네트워크](Personal_Study/Network.md)
+[통신/네트워크](Personal_Study/통신_네트워크.md)
 
 [면접을 위한 CS 전공지식 노트](Personal_Study/면접을_위한_CS_전공지식_노트.md)
 
@@ -80,7 +80,7 @@
 
 [면접 대비 ](Personal_Study/면접_대비.md)
 
-[참고자료](Personal_Study/%E1%84%8E%E1%85%A1%E1%86%B7%E1%84%80%E1%85%A9%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%20b6f13e0a39974d9f9bd34053a6f7e835.md)
+[참고자료](Personal_Study/참고자료.md)
 
 [Figma](Personal_Study/Figma.md)
 
