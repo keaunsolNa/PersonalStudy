@@ -87,3 +87,5 @@
 [TDD](Personal_Study/TDD.md)
 
 [OpenProject](Personal_Study/OpenProject.md)
+
+[10개_프로젝트로_완성하는_백엔드_웹개발(Java-Spring)_초격차_패키지_Online](Personal_Study/10개_프로젝트로_완성하는_백엔드_웹개발(Java-Spring)_초격차_패키지_Online.md)
