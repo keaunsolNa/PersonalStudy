@@ -88,4 +88,6 @@
 
 [OpenProject](Personal_Study/OpenProject.md)
 
-[10개_프로젝트로_완성하는_백엔드_웹개발(Java-Spring)_초격차_패키지_Online](Personal_Study/10개_프로젝트로_완성하는_백엔드_웹개발(Java-Spring)_초격차_패키지_Online.md)
+[10개 프로젝트로 완성하는 백엔드 웹개발(Java-Spring) 초격차 패키지 Online](Personal_Study/10개_프로젝트로_완성하는_백엔드_웹개발(Java-Spring)_초격차_패키지_Online.md)
+
+[학점은행 관련 자료](Personal_Study/학점은행_관련_자료.md)
