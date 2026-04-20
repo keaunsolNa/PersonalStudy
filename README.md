@@ -14,6 +14,10 @@
 
 [ORM](Personal_Study/ORM.md)
 
+[Redis](Personal_Study/Redis.md)
+
+[Python](Personal_Study/Python.md)
+
 # Frontend
 
 [frontend.pdf](Personal_Study/frontend.pdf)
@@ -46,6 +50,12 @@
 
 [Hadoop](Personal_Study/Hadoop.md)
 
+[CDN](Personal_Study/CDN.md)
+
+[AWS](Personal_Study/AWS.md)
+
+[Observability (Logs/Metrics/Traces)](Personal_Study/Observability_Logs_Metrics_Traces.md)
+
 # D**ata Structure**, CS
 
 [computer-science.pdf](Personal_Study/computer-science.pdf)
@@ -58,11 +68,21 @@
 
 [면접을 위한 CS 전공지식 노트](Personal_Study/면접을_위한_CS_전공지식_노트.md)
 
+[JVM 메모리 모델과 GC 튜닝 실전](Personal_Study/JVM_메모리_모델과_GC_튜닝_실전.md)
+
 # DataBase
 
 [Oracle](Personal_Study/Oracle.md)
 
 [최적화 기본](Personal_Study/최적화_기본.md)
+
+[Saga 패턴과 분산 트랜잭션](Personal_Study/Saga_패턴과_분산_트랜잭션.md)
+
+# AI
+
+[AI Multi-Agent 서비스 실전프로젝트](Personal_Study/AI_Multi-Agent_서비스_실전프로젝트.md)
+
+[Claude Code](Personal_Study/Claude_Code.md)
 
 # C**ertificate**
 
@@ -75,6 +95,10 @@
 [리눅스 마스터 2급](Personal_Study/리눅스_마스터_2급.md)
 
 [컴퓨터 활용 능력 2급](Personal_Study/컴퓨터_활용_능력_2급.md)
+
+[빅데이터분석기사](Personal_Study/빅데이터분석기사.md)
+
+[사무자동화 산업기사](Personal_Study/사무자동화_산업기사.md)
 
 # ETC
 
