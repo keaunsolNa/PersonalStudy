@@ -1,5 +1,9 @@
 # Personal Study
 
+# Daily Study Note
+
+[Daily Study Note](Personal_Study/Daily_Study_Note/README.md)
+
 # Backend
 
 [backend.pdf](Personal_Study/backend.pdf)
@@ -54,8 +58,6 @@
 
 [AWS](Personal_Study/AWS.md)
 
-[Observability (Logs/Metrics/Traces)](Personal_Study/Observability_Logs_Metrics_Traces.md)
-
 # D**ata Structure**, CS
 
 [computer-science.pdf](Personal_Study/computer-science.pdf)
@@ -68,15 +70,11 @@
 
 [면접을 위한 CS 전공지식 노트](Personal_Study/면접을_위한_CS_전공지식_노트.md)
 
-[JVM 메모리 모델과 GC 튜닝 실전](Personal_Study/JVM_메모리_모델과_GC_튜닝_실전.md)
-
 # DataBase
 
 [Oracle](Personal_Study/Oracle.md)
 
 [최적화 기본](Personal_Study/최적화_기본.md)
-
-[Saga 패턴과 분산 트랜잭션](Personal_Study/Saga_패턴과_분산_트랜잭션.md)
 
 # AI
 
