@@ -117,3 +117,5 @@ package-lock.json
 
 *.iml
 *.idea
+# Claude Code local settings (do not commit)
+.claude/
