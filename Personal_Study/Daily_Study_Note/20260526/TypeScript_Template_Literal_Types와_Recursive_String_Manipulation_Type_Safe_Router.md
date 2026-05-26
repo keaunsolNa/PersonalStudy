@@ -12,9 +12,9 @@ Notion 원본: https://www.notion.so/36c5a06fd6d38175880dcc6e5e7080eb
 
 ## 1. Template Literal Type 기본 — string literal 합성과 `${T}` 보간
 
-Template literal type 은 TypeScript 4.1 에서 도입된 문법으로, 값 레벨의 백틱 템플릿 리터럴을 타입 레벨로 끌어올린 것이다. 즉 `` `hello, ${string}` `` 같은 타입은 "hello, " 로 시작하는 모든 문자열 집합을 의미하는 타입이 된다. TS 5.x 에서 가장 강력한 부분은 이 보간 자리에서 `infer` 가 가능하다는 점이며, 이것이 라우터·URL·SQL builder 같은 DSL 의 타입 추론을 가능하게 만든다.
+Template literal type 은 TypeScript 4.1 에서 도입된 문법으로, 값 레벨의 백틱 템플릿 리터럴을 타입 레벨로 끌어올린 것이다. 즉 `\`hello, ${string}\`` 같은 타입은 "hello, " 로 시작하는 모든 문자열 집합을 의미하는 타입이 된다. TS 5.x 에서 가장 강력한 부분은 이 보간 자리에서 `infer` 가 가능하다는 점이며, 이것이 라우터·URL·SQL builder 같은 DSL 의 타입 추론을 가능하게 만든다.
 
-기본형은 세 가지로 나누어 이해한다. 첫째는 union 분배: `` `${'a'|'b'}-${'x'|'y'}` `` 는 4가지 literal union 으로 펼쳐진다. 둘째는 capture: 조건부 타입 안에서 `infer` 를 사용해 부분 문자열을 잡는다. 셋째는 reshape: `Uppercase<T>`, `Lowercase<T>`, `Capitalize<T>`, `Uncapitalize<T>` 같은 intrinsic string manipulation type 으로 변형한다.
+기본형은 세 가지로 나누어 이해한다. 첫째는 union 분배: `\`${'a'|'b'}-${'x'|'y'}\`` 는 4가지 literal union 으로 펼쳐진다. 둘째는 capture: 조건부 타입 안에서 `infer` 를 사용해 부분 문자열을 잡는다. 셋째는 reshape: `Uppercase<T>`, `Lowercase<T>`, `Capitalize<T>`, `Uncapitalize<T>` 같은 intrinsic string manipulation type 으로 변형한다.
 
 ```ts
 // src/template/basic.ts
@@ -204,6 +204,12 @@ import type { Split } from '../template/split';
 // 안전: tail recursion
 type Safe = Split<'a/b/c/d/e/f/g/h/i/j', '/'>;
 
+// 위험: 비-tail. tsc 가 ts(2589) 로 거절할 수 있음
+// type Unsafe<S extends string, D extends string, Acc extends string[] = []> =
+//   S extends `${infer H}${D}${infer T}`
+//     ? Unsafe<T, D, [...Acc, H]>   // 이건 사실 tail. 진짜 비-tail 은 conditional 바깥에서 spread.
+//     : [...Acc, S];
+
 export type Prettify<T> = { [K in keyof T]: T[K] } & {};
 ```
 
@@ -214,6 +220,25 @@ export type Prettify<T> = { [K in keyof T]: T[K] } & {};
 tRPC 는 path 가 아니라 procedure name 으로 호출되므로 본 절의 주제와는 결이 다르지만, `client.users.byId.query({ id })` 처럼 입력 스키마(zod)의 타입을 그대로 옮긴다. path 추론을 직접 다루지는 않는다. ts-rest 는 RESTful endpoint 를 contract 객체로 선언한 뒤 path 의 `:param` 을 zod schema 와 결합해 `client.users.byId({ params: { id } })` 형태로 호출한다. 내부적으로 `ExtractPathParams<'/users/:id'>` 와 매우 유사한 타입을 두고, zod schema 로 narrowing 한 string 을 그 자리에 강제한다.
 
 hono 는 가장 공격적으로 chain 타입을 누적한다. `app.get('/users/:id', h1).get('/posts/:postId', h2)` 라는 체이닝의 반환 타입에 매 step 의 path · method · response schema 가 intersection 으로 쌓이며, RPC client (`hc<typeof app>()`) 가 이 누적 타입을 그대로 읽어 `client.users[':id'].$get({ param: { id } })` 형태로 변환한다. 이 구조 덕분에 server-only 코드 변경이 즉시 client 타입에 반영되지만, 동시에 path 가 수백 개로 늘면 앞서 본 ts(2590) 가 발생할 수 있다.
+
+```ts
+// 의사 코드 — 세 라이브러리의 path 추론 핵심
+// ts-rest 풍
+type RestRoute<P extends string, B> = {
+  method: 'GET' | 'POST';
+  path: P;
+  body?: B;
+};
+type RestClient<R extends RestRoute<string, unknown>> =
+  (args: { params: ExtractParams<R['path']> } & (R['body'] extends undefined ? {} : { body: R['body'] }))
+    => Promise<unknown>;
+
+// hono 풍 chain
+type Hono<E extends Record<string, unknown> = {}> = {
+  get<const P extends string, R>(path: P, h: (c: { req: { param: ExtractParams<P> } }) => R):
+    Hono<E & { [K in P]: { $get: () => R } }>;
+};
+```
 
 선택 기준은 단순하다. 단일 백엔드·내부 호출이면 tRPC, 외부 공개 REST API 라면 ts-rest, Edge runtime(Cloudflare Workers 등) 에서 가장 가벼운 router 가 필요하다면 hono. 셋 다 본 노트에서 구현한 `ExtractParams` 의 변형을 내부적으로 갖고 있다.
 
@@ -264,4 +289,4 @@ type UserParams = ExtractParams<typeof routes.user>;
 - ts-rest 공식 문서: https://ts-rest.com
 - hono 공식 문서 — RPC mode: https://hono.dev/docs/guides/rpc
 - tRPC 공식 문서: https://trpc.io/docs
-- type-challenges (Anthony Fu): https://github.com/type-challenges/type-challenges
+- type-challenges (Anthony Fu) — `ParseQueryString`, `TrimLeft`
