@@ -243,4 +243,4 @@ ClusterSet 의 비동기 복제 lag 는 *write throughput* 과 *network RTT* 에
 - MySQL 8.4 Reference Manual — InnoDB ClusterSet
 - MySQL High Availability (3rd ed., O'Reilly)
 - "MySQL Router" — MySQL Shell User Guide
-- bug.mysql.com — 관련 이슈 트래커
+- bug.mysql.
