@@ -6,6 +6,7 @@ Notion 원본: https://www.notion.so/ks-awesome/Personal-Study-b40ee451b3e84c078
 
 ## 날짜
 
+- [2026-06-08](./20260608/README.md)
 - [2026-06-06](./20260606/README.md)
 - [2026-06-05](./20260605/README.md)
 - [2026-06-04](./20260604/README.md)
