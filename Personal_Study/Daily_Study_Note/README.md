@@ -2,10 +2,11 @@
 
 Notion 원본: https://www.notion.so/ks-awesome/Personal-Study-b40ee451b3e84c0780a40d0c11c2a8fd
 
-매일 `daily-personal-study-expand` 스케줄이 생성하는 확장 학습 주제를 날짜별로 정리한 공간.
+매일 `daily-personal-study-expand` 스케줄이 생성하는 확장 학습 주제를 날짜별로 정리하는 공간.
 
 ## 날짜
 
+- [2026-06-13](./20260613/README.md)
 - [2026-06-11](./20260611/README.md)
 - [2026-06-09](./20260609/README.md)
 - [2026-06-08](./20260608/README.md)
