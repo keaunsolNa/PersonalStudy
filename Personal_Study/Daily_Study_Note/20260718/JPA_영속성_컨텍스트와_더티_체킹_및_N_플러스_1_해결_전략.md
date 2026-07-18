@@ -96,7 +96,7 @@ public long registerAndCount(Member member) {
 }
 ```
 
-`FlushModeType.COMMIT` 은 두 번째 조건을 꺼서 flush 횟수를 줄이지만 대가가 이것이다. 게다가 Hibernate 는 네이티브 쿼리가 어떤 테이블을 건드리는지 파싱하지 않으므로 네이티브 쿼리는 AUTO 모드에서도 같은 문제를 랼 수 있다. `@Modifying(flushAutomatically = true)` 로 명시하는 편이 안전하다. 결국 이 모드는 읽기/쓰기 분리가 자명한 곳에만 국소 적용한다.
+`FlushModeType.COMMIT` 은 두 번째 조건을 꺼서 flush 횟수를 줄이지만 대가가 이것이다. 게다가 Hibernate 는 네이티브 쿼리가 어떤 테이블을 건드리는지 파싱하지 않으므로 네이티브 쿼리는 AUTO 모드에서도 같은 문제를 낼 수 있다. `@Modifying(flushAutomatically = true)` 로 명시하는 편이 안전하다. 결국 이 모드는 읽기/쓰기 분리가 자명한 곳에만 국소 적용한다.
 
 쓰기 지연의 이득인 JDBC 배치는 `hibernate.jdbc.batch_size` 로 켜다. 배치는 동일 SQL 이 연속될 때만 묶이므로 A-B-A-B 로 섞이면 크기가 1로 떨어지고, `order_inserts: true` 가 같은 테이블 INSERT 를 인접하게 재정렬해 이를 막는다. 다만 `IDENTITY` 는 INSERT 를 즉시 실행해 키를 받아야 하므로 **JDBC 배치가 원천 비활성화**된다. 대량 INSERT 라면 `SEQUENCE` + `pooled` 옵티마이저를 쓴다.
 
@@ -113,11 +113,11 @@ entityManager.persist(new OrderItem(order, product, quantity));
 
 단 존재하지 않는 PK 는 접근 시점에 `EntityNotFoundException` 으로 터져 존재 검증이 뒤로 미뤄진다. 프록시는 원본 클래스가 아니므로 `equals()` 는 `getClass()` 가 아니라 `instanceof` 로 짜야 한다.
 
-`LazyInitializationException` 은 미초기화 프록시를 세션이 닫힐 뒤 접근할 때 터진다. `@Transactional` 서비스가 반환한 엔티티를 컨트롤러에서 lazy 필드로 파고들면 그 시점에 세션은 닫혀 있다. Spring Boot 는 이를 무마하려 `spring.jpa.open-in-view` 를 기본 `true` 로 두어, 인터셉터가 요청 시작 시점에 `EntityManager` 를 만들어 응답이 끝날 때까지 유지한다. 대가는 커넥션이다. 뷰 렌더링 중 lazy 로딩이 발생하면 트랜잭션이 끝난 뒤에도 다시 커넥션을 잡고, 외부 API 호출이나 무거운 직렬화가 섞이면 커넥션 풀이 잠식되어 대기와 타임아웃이 연쇄된다. 권장은 `open-in-view: false` 로 끄고 서비스 계층에서 fetch join 이나 DTO 프로젝션으로 데이터를 완결해 반환하는 것이다. 끄는 순간 가려져 있던 lazy 접근이 예외로 드러나므로 신규 프로젝트라면 처음부터 끄고 시작한다.
+`LazyInitializationException` 은 미초기화 프록시를 세션이 닫힌 뒤 접근할 때 터진다. `@Transactional` 서비스가 반환한 엔티티를 컨트롤러에서 lazy 필드로 파고들면 그 시점에 세션은 닫혀 있다. Spring Boot 는 이를 무마하려 `spring.jpa.open-in-view` 를 기본 `true` 로 두어, 인터셉터가 요청 시작 시점에 `EntityManager` 를 만들어 응답이 끝날 때까지 유지한다. 대가는 커넥션이다. 뷰 렌더링 중 lazy 로딩이 발생하면 트랜잭션이 끝난 뒤에도 다시 커넥션을 잡고, 외부 API 호출이나 무거운 직렬화가 섞이면 커넥션 풀이 잠식되어 대기와 타임아웃이 연쇄된다. 권장은 `open-in-view: false` 로 끄고 서비스 계층에서 fetch join 이나 DTO 프로젝션으로 데이터를 완결해 반환하는 것이다. 끄는 순간 가려져 있던 lazy 접근이 예외로 드러나므로 신규 프로젝트라면 처음부터 끄고 시작한다.
 
 ## 5. N+1 의 발생 원리 — EAGER 도 답이 아니다
 
-N+1 은 "목록 1건 조회 후 각 행마다 연관 조회 N 건"이다. LAZY 에서 나는 것은 직관적이다. 문제는 **EAGER 로 바꿔도 JPQL 에서는 N+1 이 그대로 난다**는 사실이다. `em.find()` 는 Hibernate 가 메타데이터를 보고 SQL 을 직접 조립하므로 EAGER 연관을 JOIN 으로 합친다. 반면 JPQL 은 개발자가 쓴 문자열을 **그대로 SQL 로 번역**해 member 조인이 없는 SQL 을 만든다. 그 SQL 로 Order 목록을 만든 뒤 Hibernate 는 "member 가 EAGER 인데 안 채워졌네"를 발견하고 **뒤능게 행마다 추가 SELECT** 를 날린다. 결과는 1 + N 이다.
+N+1 은 "목록 1건 조회 후 각 행마다 연관 조회 N 건"이다. LAZY 에서 나는 것은 직관적이다. 문제는 **EAGER 로 바꿔도 JPQL 에서는 N+1 이 그대로 난다**는 사실이다. `em.find()` 는 Hibernate 가 메타데이터를 보고 SQL 을 직접 조립하므로 EAGER 연관을 JOIN 으로 합친다. 반면 JPQL 은 개발자가 쓴 문자열을 **그대로 SQL 로 번역**해 member 조인이 없는 SQL 을 만든다. 그 SQL 로 Order 목록을 만든 뒤 Hibernate 는 "member 가 EAGER 인데 안 채워졌네"를 발견하고 **뒤늦게 행마다 추가 SELECT** 를 날린다. 결과는 1 + N 이다.
 
 ```sql
 -- JPQL: select o from Order o  →  EAGER 여부와 무관하게 조인 없이 번역된다
@@ -196,11 +196,11 @@ spring:
 Page<Order> findPageWithToOne(@Param("status") OrderStatus status, Pageable pageable);
 ```
 
-ToOne fetch join 은 행 수를 늘리지 않으므로 `limit` 이 DB 에서 정상 동작한다. 여기에 `default_batch_fetch_size` 가 켜져 있으면 페이지에 담긴 Order 들의 `orderItems` 를 처음 건드리는 순간 IN 절 한 방으로 채워진다. 페이지 크기 10, 컴렉션 2개면 총 3회(루트 1 + 컴렉션 2)로 수렴하고, 컴렉션이 중첩도도 단계마다 IN 절 1회씩이라 깊이에 선형이다.
+ToOne fetch join 은 행 수를 늘리지 않으므로 `limit` 이 DB 에서 정상 동작한다. 여기에 `default_batch_fetch_size` 가 켜져 있으면 페이지에 담긴 Order 들의 `orderItems` 를 처음 건드리는 순간 IN 절 한 방으로 채워진다. 페이지 크기 10, 컴렉션 2개면 총 3회(루트 1 + 컴렉션 2)로 수렴하고, 컴렉션이 중첩돼도 단계마다 IN 절 1회씩이라 깊이에 선형이다.
 
 ## 8. 캐시 경계와 대량 배치의 메모리 관리
 
-1차 캐시는 영속성 컨텍스트 생명주기에 묶여 스레드 간 공유되지 않는다. 2차 캐시는 `SessionFactory` 범위로 전체가 공유하며 조회 순서는 1차 → 2차 → DB 다. 2차 캐시는 **엔티티가 아니라 분해된 상태 배열을 저장**하고 꿼낼 때 재조립하므로, 히트해도 반환 인스턴스는 매번 다르고 가변 필드가 공유돼 오염되는 사고는 없다.
+1차 캐시는 영속성 컨텍스트 생명주기에 묶여 스레드 간 공유되지 않는다. 2차 캐시는 `SessionFactory` 범위로 전체가 공유하며 조회 순서는 1차 → 2차 → DB 다. 2차 캐시는 **엔티티가 아니라 분해된 상태 배열을 저장**하고 꺼낼 때 재조립하므로, 히트해도 반환 인스턴스는 매번 다르고 가변 필드가 공유돼 오염되는 사고는 없다.
 
 쿼리 캐시는 함정이 많다. **결과 엔티티가 아니라 식별자 목록만** 저장하기 때문이다. 히트해도 각 ID 로 엔티티를 다시 찾아야 하고, 2차 캐시에 그 엔티티가 없으면 ID 마다 SELECT 가 나간다. 즉 **쿼리 캐시만 켜고 엔티티 2차 캐시를 안 켜면 N+1 을 새로 만들어낸다.** 또한 대상 테이블의 갱신 타임스탬프로 유효성을 판단하므로 쓰기가 잦으면 거의 항상 무효화되어 오버헤드만 남는다.
 
@@ -222,11 +222,11 @@ public void bulkInsert(List<OrderRequest> requests) {
 }
 ```
 
-`clear()` 는 전체를, `detach(entity)` 는 특정 엔티티만 둜다. `clear()` 이후 기존 참조는 모두 detached 가 되어 lazy 접근이 예외를 던지고, `flush()` 없이 `clear()` 하면 변경사항이 **조용히 사라진다**. 순서는 항상 flush → clear 다.
+`clear()` 는 전체를, `detach(entity)` 는 특정 엔티티만 뗬다. `clear()` 이후 기존 참조는 모두 detached 가 되어 lazy 접근이 예외를 던지고, `flush()` 없이 `clear()` 하면 변경사항이 **조용히 사라진다**. 순서는 항상 flush → clear 다.
 
 ## 9. 진단 — 쿼리 수를 보고 테스트로 고정하기
 
-N+1 은 코드 리뷰로 잡히지 않는다. 로컬 데이터 3건이면 4번이라 안 보이다가 운영에서 1만 건이면 1만 1번이 된다. 계측이 먼저다.
+N+1 은 코드 리뷰로 잡힐지 않는다. 로컬 데이터 3건이면 4번이라 안 보이다가 운영에서 1만 건이면 1만 1번이 된다. 계측이 먼저다.
 
 ```yaml
 spring:
@@ -240,7 +240,7 @@ logging:
     org.hibernate.orm.jdbc.bind: TRACE
 ```
 
-`generate_statistics` 는 세션 종료마다 실행 쿼리 수, 컴렉션 페치 수, 2차 캐시 히트/미스를 남긴다. 오버헤드가 있으니 운영에는 지표 수집 목적으로만 쓴다. `org.hibernate.orm.jdbc.bind`(5.x 는 `org.hibernate.type.descriptor.sql`)는 `?` 에 바인딩된 값을 보여 준다. 완성된 SQL 을 보려면 JDBC 드라이버를 감싸는 p6spy 가 편하다. 가장 중요한 것은 **쿼리 수를 테스트로 고정**하는 것이다. 한 번 고쳌도 누군가 lazy 필드를 하나 더 건드리면 조용히 N+1 이 부활한다.
+`generate_statistics` 는 세션 종료마다 실행 쿼리 수, 컴렉션 페치 수, 2차 캐시 히트/미스를 남긴다. 오버헤드가 있으니 운영에는 지표 수집 목적으로만 쓴다. `org.hibernate.orm.jdbc.bind`(5.x 는 `org.hibernate.type.descriptor.sql`)는 `?` 에 바인딩된 값을 보여 준다. 완성된 SQL 을 보려면 JDBC 드라이버를 감싸는 p6spy 가 편하다. 가장 중요한 것은 **쿼리 수를 테스트로 고정**하는 것이다. 한 번 고쳐도 누군가 lazy 필드를 하나 더 건드리면 조용히 N+1 이 부활한다.
 
 ```java
 @SpringBootTest
@@ -281,7 +281,7 @@ class OrderQueryCountTest {
 }
 ```
 
-`getPrepareStatementCount()` 는 실제 준비된 JDBC statement 수를 센다. `getQueryExecutionCount()` 는 JPQL/HQL 실행만 세고 lazy 로딩 SELECT 는 빠지므로 N+1 탐지에는 전자가 정확하다. 테스트 데이터는 최소 3건 이상 넣어야 한다. 1건이면 1+1=2 라 정상과 구분되지 않는다. 다만 이 테스트의 지연 로딩은 트랜잭션 안에서 항상 성공하므로, OSIV 를 끔 운영에서 터질 `LazyInitializationException` 은 컨트롤러 레벨 통합 테스트로 따로 막아야 한다.
+`getPrepareStatementCount()` 는 실제 준비된 JDBC statement 수를 센다. `getQueryExecutionCount()` 는 JPQL/HQL 실행만 세고 lazy 로딩 SELECT 는 빠지므로 N+1 탐지에는 전자가 정확하다. 테스트 데이터는 최소 3건 이상 넣어야 한다. 1건이면 1+1=2 라 정상과 구분되지 않는다. 다만 이 테스트의 지연 로딩은 트랜잭션 안에서 항상 성공하므로, OSIV 를 끕 운영에서 터질 `LazyInitializationException` 은 컨트롤러 레벨 통합 테스트로 따로 막아야 한다.
 
 ## 참고
 
