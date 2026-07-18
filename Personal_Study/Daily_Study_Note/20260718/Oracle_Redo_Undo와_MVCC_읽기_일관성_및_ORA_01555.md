@@ -15,7 +15,7 @@ Notion 원본: https://www.notion.so/3a15a06fd6d381d59dc2eb687de21c94
 
 Redo 는 **변경을 다시 적용(roll forward)** 하기 위한 기록이고, undo 는 **변경을 되돌리기** 위한 이전 이미지(before image)다. 이름이 대칭적이라 같은 걸 반대로 적어둔 것처럼 보이지만 목적이 전혀 다르다.
 
-Redo 가 필요한 이유는 **버퍼 캐시가 휘발성**이기 때문이다. Oracle 은 블록을 메모리에서 고치고 디스크에는 DBWR 이 나중에 느긋하게 쓰므로, 커밋한 변경이 아직 데이터 파일에 없는 상태에서 인스턴스가 죽으면 그 변경은 증발한다. 그래서 커밋 시점에 "무엇을 어떻게 바꿠는지"를 순차 기록에 강제로 먼저 내려쓰고, 복구 시 재생해 데이터 파일을 커밋 시점까지 끌어올린다.
+Redo 가 필요한 이유는 **버퍼 캐시가 휘발성**이기 때문이다. Oracle 은 블록을 메모리에서 고치고 디스크에는 DBWR 이 나중에 느긋하게 쓰므로, 커밋한 변경이 아직 데이터 파일에 없는 상태에서 인스턴스가 죽으면 그 변경은 증발한다. 그래서 커밋 시점에 "무엇을 어떻게 바꿨는지"를 순차 기록에 강제로 먼저 내려쓰고, 복구 시 재생해 데이터 파일을 커밋 시점까지 끌어올린다.
 
 Undo 가 필요한 이유는 정반대다. 버퍼 캐시가 차면 DBWR 은 커밋 여부와 무관하게 **미커밋 트랜잭션의 더티 블록도 데이터 파일에 써버린다**. 데이터 파일에 "아직 커밋 안 된 값"이 섞이므로, 롤백하거나 인스턴스가 죽으면 되돌려야 한다. 되돌릴 재료가 undo 이며, 동시에 undo 는 다른 세션이 "내 쿼리 시작 시점의 값"을 보게 해주는 재료이기도 하다.
 
@@ -54,19 +54,19 @@ COMMIT;
 
 ## 3. Log Buffer → LGWR → Online Redo Log
 
-Redo change vector 는 곷바로 파일로 가지 않고 SGA 의 **log buffer** 에 쌓이며, LGWR 이 online redo log 에 순차 기록한다.
+Redo change vector 는 곧바로 파일로 가지 않고 SGA 의 **log buffer** 에 쌓이며, LGWR 이 online redo log 에 순차 기록한다.
 
 | 트리거 | 설명 |
 |---|---|
 | 커밋(또는 롤백) | 해당 redo 를 디스크에 내리고 완료를 기다린 뒤 성공 응답 |
 | 3초마다 | 주기적 타임아웃 |
-| log buffer 가 1/3 이상 챼 | 사용량 임계치 |
+| log buffer 가 1/3 이상 참 | 사용량 임계치 |
 | 1MB 이상 미기록 redo 누적 | 크기 임계치 |
 | DBWR 이 더티 블록 쓰기 직전 | Write-Ahead Logging 규약 |
 
-마지막 항목이 WAL 의 본질이다. **데이터 블록이 디스크에 내려가기 전에 그 변경을 설명하는 redo 가 먼저 디스크에 있어야 한다.** 순서가 뒤집힐면 복구가 불가능하므로, DBWR 은 블록을 쓰기 전 그 블록의 최고 redo 위치까지 flush 됐는지 확인하고 아니면 LGWR 에 요청한 뒤 기다린다.
+마지막 항목이 WAL 의 본질이다. **데이터 블록이 디스크에 내려가기 전에 그 변경을 설명하는 redo 가 먼저 디스크에 있어야 한다.** 순서가 뒤집히면 복구가 불가능하므로, DBWR 은 블록을 쓰기 전 그 블록의 최고 redo 위치까지 flush 됐는지 확인하고 아니면 LGWR 에 요청한 뒤 기다린다.
 
-커밋 시 동작이 "log force at commit" 이다. 커밋한 세션은 LGWR 이 redo 를 쓰고 OS 응답을 받을 때까지 `log file sync` 에서 대기한다(배치에서 이 이벤트가 상위에 뜼면 커밋 주기를 의심할 것). 줄이는 파라미터가 `COMMIT_LOGGING` 과 `COMMIT_WRITE` 다.
+커밋 시 동작이 "log force at commit" 이다. 커밋한 세션은 LGWR 이 redo 를 쓰고 OS 응답을 받을 때까지 `log file sync` 에서 대기한다(배치에서 이 이벤트가 상위에 뜨면 커밋 주기를 의심할 것). 줄이는 파라미터가 `COMMIT_LOGGING` 과 `COMMIT_WRITE` 다.
 
 ```sql
 ALTER SESSION SET COMMIT_WRITE = 'BATCH,NOWAIT';   -- redo flush 완료를 안 기다림
@@ -134,7 +134,7 @@ Trade-off 는 명확하다. 슬롯 하나가 블록 공간을 차지하므로 `I
 
 **경로 1 — undo 재사용(overwrite).** Undo 익스텐트는 원형으로 재사용된다. 커밋된 undo 는 `UNDO_RETENTION` 목표만큼 남기려 하지만 공간이 없으면 **retention 을 무시하고 덮어쓴다**. 09:00 에 장기 쿼리가 SCN 1000 을 고정한 채 도는 동안 다른 세션들이 대량 DML + 커밋으로 undo 를 소진해 09:40 에 09:00 무렵 익스텐트를 덮어쓰면, 09:41 에 장기 쿼리가 SCN 1500 인 블록을 되감으려 할 때 undo 가 없다. **에러 나는 세션과 원인을 만든 세션이 다르다.** 죽는 건 조회 쿼리인데 범인은 옆에서 커밋을 남발한 배치다.
 
-**경로 2 — delayed block cleanout.** 커밋 시 Oracle 은 변경한 모든 블록의 ITL 을 즉시 정리하지 않는다. 커밋은 undo 세그먼트 헤더의 트랜잭션 테이블에 "커밋됨, SCN=1200" 만 쓰고 끝낸다(fast commit). 버퍼 캐시에 남은 일부는 커밋 세션이 바로 정리하지만, 이미 디스크로 내려갔거나 개수가 많으면 미룬다. 나중에 그 블록을 읽는 세션은 ITL 에 커밋 SCN 이 없어 "활성처럼 보이는" 상태를 만나고, XID 로 undo 세그먼트 헤더에 "커밋됐나?"를 묻는다. 그 사이 트랜잭션 테이블 슬롯이 재사용됐다면 커밋 SCN 을 알 수 없으므로 ORA-01555 를 던진다. 대표 시나리오는 **대량 적재 후 곷바로 그 테이블 풀스캔** 이고, undo 를 아무리 키워도 안 없어진다. 적재 직후 가벼운 풀스캔(`SELECT /*+ FULL(t) */ COUNT(*) FROM t;`)으로 cleanout 을 미리 끝내는 것이 회피책이며, 대가는 그 스캔이 redo 를 만든다는 점이다.
+**경로 2 — delayed block cleanout.** 커밋 시 Oracle 은 변경한 모든 블록의 ITL 을 즉시 정리하지 않는다. 커밋은 undo 세그먼트 헤더의 트랜잭션 테이블에 "커밋됨, SCN=1200" 만 쓰고 끝낸다(fast commit). 버퍼 캐시에 남은 일부는 커밋 세션이 바로 정리하지만, 이미 디스크로 내려갔거나 개수가 많으면 미룬다. 나중에 그 블록을 읽는 세션은 ITL 에 커밋 SCN 이 없어 "활성처럼 보이는" 상태를 만나고, XID 로 undo 세그먼트 헤더에 "커밋됐나?"를 묻는다. 그 사이 트랜잭션 테이블 슬롯이 재사용됐다면 커밋 SCN 을 알 수 없으므로 ORA-01555 를 던진다. 대표 시나리오는 **대량 적재 후 곧바로 그 테이블 풀스캔** 이고, undo 를 아무리 키워도 안 없어진다. 적재 직후 가벼운 풀스캔(`SELECT /*+ FULL(t) */ COUNT(*) FROM t;`)으로 cleanout 을 미리 끝내는 것이 회피책이며, 대가는 그 스캔이 redo 를 만든다는 점이다.
 
 ```sql
 ALTER SYSTEM SET undo_retention = 3600 SCOPE=BOTH;
@@ -149,7 +149,7 @@ SELECT (SELECT TO_NUMBER(value) FROM v$parameter WHERE name = 'undo_retention')
   FROM v$undostat;
 ```
 
-`UNDO_RETENTION` 은 **목표지 보장이 아니다.** 고정 크기 undo 테이블스페이스에서는 Oracle 이 자동으로 retention 을 튜닝하며 공간이 부족하면 목표를 무시한다. `RETENTION GUARANTEE` 를 걸면 retention 기간 내 undo 를 절대 덮어쓰지 않는다. 대신 **공간 부족 시 DML 이 `ORA-30036` 으로 실패한다.** "SELECT 가 죽는 것"과 "UPDATE 가 죽는 것" 사이의 선택인 셌이다. 리포팅 정합성이 최우선인 DW 성 시스템은 GUARANTEE 가 맞고, 트랜잭션이 멈추면 안 되는 OLTP 는 신중해야 한다. 산정 쿼리가 AVG 가 아닌 MAX 를 쓰는 이유는 피크(야간 배치) 기준이어야 해서다.
+`UNDO_RETENTION` 은 **목표지 보장이 아니다.** 고정 크기 undo 테이블스페이스에서는 Oracle 이 자동으로 retention 을 튜닝하며 공간이 부족하면 목표를 무시한다. `RETENTION GUARANTEE` 를 걸면 retention 기간 내 undo 를 절대 덮어쓰지 않는다. 대신 **공간 부족 시 DML 이 `ORA-30036` 으로 실패한다.** "SELECT 가 죽는 것"과 "UPDATE 가 죽는 것" 사이의 선택인 셈이다. 리포팅 정합성이 최우선인 DW 성 시스템은 GUARANTEE 가 맞고, 트랜잭션이 멈추면 안 되는 OLTP 는 신중해야 한다. 산정 쿼리가 AVG 가 아닌 MAX 를 쓰는 이유는 피크(야간 배치) 기준이어야 해서다.
 
 ## 7. Fetch Across Commit — 스스로 무덤 파기
 
@@ -216,7 +216,7 @@ SELECT tablespace_name, status,           -- ACTIVE / UNEXPIRED / EXPIRED
  ORDER BY tablespace_name, status;
 ```
 
-**Undo 통계 이력 — 튜닝의 근거.** `ssolderrcnt > 0` 인 구간을 찾고 같은 행의 `maxqueryid`(SQL_ID)로 `v$sql` 에서 범인 쿼리를 뽑는다. `tuned_undoretention` 이 설정값보다 작다면 Oracle 이 공간 압박으로 목표를 긎았다는 뜻이라 undo 테이블스페이스를 늘려야 한다.
+**Undo 통계 이력 — 튜닝의 근거.** `ssolderrcnt > 0` 인 구간을 찾고 같은 행의 `maxqueryid`(SQL_ID)로 `v$sql` 에서 범인 쿼리를 뽑는다. `tuned_undoretention` 이 설정값보다 작다면 Oracle 이 공간 압박으로 목표를 깎았다는 뜻이라 undo 테이블스페이스를 늘려야 한다.
 
 ```sql
 SELECT TO_CHAR(begin_time, 'MM-DD HH24:MI') AS begin_t,
@@ -258,9 +258,9 @@ COMMIT;
 ALTER TABLE emp_new LOGGING;            -- 작업 후 반드시 원복
 ```
 
-**위험을 정확히 알아야 한다.** `NOLOGGING` + direct-path 는 redo 를 최소화하지만 이는 곷 **"이 데이터는 백업으로 복구할 수 없다"** 는 뜻이다. 직후 데이터 파일이 손상되면 재생할 redo 가 없어 블록이 논리적으로 깨진 상태(`ORA-01578` 계열)로 남는다. 철칙은 둘. **(1) NOLOGGING 작업 직후 반드시 백업을 다시 뜼다. (2) Data Guard standby 가 있으면 primary 는 FORCE LOGGING 이라 NOLOGGING 은 무시되고 이득이 없다.** `/*+ APPEND */` 는 커밋 전까지 테이블에 **exclusive 락**을 걸어 다른 세션 DML 을 막으므로 야간 배치 전용 도구다.
+**위험을 정확히 알아야 한다.** `NOLOGGING` + direct-path 는 redo 를 최소화하지만 이는 곧 **"이 데이터는 백업으로 복구할 수 없다"** 는 뜻이다. 직후 데이터 파일이 손상되면 재생할 redo 가 없어 블록이 논리적으로 깨진 상태(`ORA-01578` 계열)로 남는다. 철칙은 둘. **(1) NOLOGGING 작업 직후 반드시 백업을 다시 뜬다. (2) Data Guard standby 가 있으면 primary 는 FORCE LOGGING 이라 NOLOGGING 은 무시되고 이득이 없다.** `/*+ APPEND */` 는 커밋 전까지 테이블에 **exclusive 락**을 걸어 다른 세션 DML 을 막으므로 야간 배치 전용 도구다.
 
-결국 개발자가 쉘 레버는 **트랜잭션의 길이**와 **개수** 둘뿐이다. 길면 undo 가 쌓이고 롤백이 무서워지며, 짧고 많으면 `log file sync` 와 ORA-01555 가 온다. 그 사이 값은 감이 아니라 `v$undostat` 과 AWR 로 찾는다.
+결국 개발자가 쥔 레버는 **트랜잭션의 길이**와 **개수** 둘뿐이다. 길면 undo 가 쌓이고 롤백이 무서워지며, 짧고 많으면 `log file sync` 와 ORA-01555 가 온다. 그 사이 값은 감이 아니라 `v$undostat` 과 AWR 로 찾는다.
 
 ## 참고
 
