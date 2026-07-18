@@ -9,7 +9,7 @@ Notion 원본: https://www.notion.so/3a15a06fd6d3815db452dcff363a8d48
 - 영속성 컨텍스트의 1차 캐시와 스냅샷 구조를 Hibernate 내부 자료구조 수준에서 파악한다.
 - flush 시점의 더티 체킹 알고리즘과 ActionQueue 실행 순서를 추적한다.
 - N+1 의 발생 원인을 JPQL 번역 과정에서 규명하고 전략별 트레이드오프를 비교한다.
-- 컴렉션 fetch join 과 페이징의 충돌을 batch fetch 로 해소하고 쿼리 수를 테스트로 검증한다.
+- 컬렉션 fetch join 과 페이징의 충돌을 batch fetch 로 해소하고 쿼리 수를 테스트로 검증한다.
 
 ## 1. 영속성 컨텍스트의 내부 구조
 
@@ -98,7 +98,7 @@ public long registerAndCount(Member member) {
 
 `FlushModeType.COMMIT` 은 두 번째 조건을 꺼서 flush 횟수를 줄이지만 대가가 이것이다. 게다가 Hibernate 는 네이티브 쿼리가 어떤 테이블을 건드리는지 파싱하지 않으므로 네이티브 쿼리는 AUTO 모드에서도 같은 문제를 낼 수 있다. `@Modifying(flushAutomatically = true)` 로 명시하는 편이 안전하다. 결국 이 모드는 읽기/쓰기 분리가 자명한 곳에만 국소 적용한다.
 
-쓰기 지연의 이득인 JDBC 배치는 `hibernate.jdbc.batch_size` 로 켜다. 배치는 동일 SQL 이 연속될 때만 묶이므로 A-B-A-B 로 섞이면 크기가 1로 떨어지고, `order_inserts: true` 가 같은 테이블 INSERT 를 인접하게 재정렬해 이를 막는다. 다만 `IDENTITY` 는 INSERT 를 즉시 실행해 키를 받아야 하므로 **JDBC 배치가 원천 비활성화**된다. 대량 INSERT 라면 `SEQUENCE` + `pooled` 옵티마이저를 쓴다.
+쓰기 지연의 이득인 JDBC 배치는 `hibernate.jdbc.batch_size` 로 켠다. 배치는 동일 SQL 이 연속될 때만 묶이므로 A-B-A-B 로 섞이면 크기가 1로 떨어지고, `order_inserts: true` 가 같은 테이블 INSERT 를 인접하게 재정렬해 이를 막는다. 다만 `IDENTITY` 는 INSERT 를 즉시 실행해 키를 받아야 하므로 **JDBC 배치가 원천 비활성화**된다. 대량 INSERT 라면 `SEQUENCE` + `pooled` 옵티마이저를 쓴다.
 
 ## 4. 지연 로딩 프록시의 실체와 경계
 
@@ -130,12 +130,12 @@ EAGER 는 상황을 악화시킨다. LAZY 라면 실제로 `getMember()` 를 호
 
 ## 6. 해결 전략 비교
 
-| 전략 | 쿼리 수 | 페이징 | 컴렉션 다중 | 적용 상황 |
+| 전략 | 쿼리 수 | 페이징 | 컬렉션 다중 | 적용 상황 |
 |---|---|---|---|---|
 | fetch join (ToOne) | 1 | 가능 | - | ToOne 연관, 항상 함께 쓰는 경우 |
-| fetch join (컴렉션) | 1 | **불가(메모리 페이징)** | 불가(Bag 다중 시 예외) | 결과가 작고 페이징 없을 때 |
+| fetch join (컬렉션) | 1 | **불가(메모리 페이징)** | 불가(Bag 다중 시 예외) | 결과가 작고 페이징 없을 때 |
 | `@EntityGraph` | 1 | fetch join 과 동일 | 동일 | Spring Data 메서드에 선언적 적용 |
-| `@BatchSize` | 1 + ⌈N/size⌉ | **가능** | 가능 | 컴렉션/프록시 다수 초기화 |
+| `@BatchSize` | 1 + ⌈N/size⌉ | **가능** | 가능 | 컬렉션/프록시 다수 초기화 |
 | `default_batch_fetch_size` | 1 + ⌈N/size⌉ | **가능** | 가능 | 전역 기본값, 사실상 필수 |
 | 서브쿼리/IN 분리 조회 | 2 | 가능 | 가능 | 배치 페치가 안 먹는 복잡 조건 |
 | DTO 프로젝션 | 1 | 가능 | 수동 가공 | 조회 전용 API |
@@ -179,11 +179,11 @@ spring:
 
 ## 7. fetch join 과 페이징의 함정
 
-컴렉션 fetch join 과 페이징을 함께 쓰면 `HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!` 경고가 뜼다. Order 1건에 OrderItem 3건이면 조인 결과는 3행이라, `limit 10` 은 Order 10건이 아니라 조인 후 10행(Order 3~4건)을 잘라 결과가 틀린다. Hibernate 는 이를 알기에 **`limit` 을 SQL 에서 빼고 전체 결과를 다 읽은 뒤 메모리에서 자른다**. 결과는 맞지만 100만 건 테이블이면 100만 행을 힙에 올린 뒤 10건만 남긴다. OOM 으로 직행하는 경로이며, Hibernate 6.x 는 이를 예외로 승격하는 방향으로 정책을 강화했다.
+컬렉션 fetch join 과 페이징을 함께 쓰면 `HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!` 경고가 뜬다. Order 1건에 OrderItem 3건이면 조인 결과는 3행이라, `limit 10` 은 Order 10건이 아니라 조인 후 10행(Order 3~4건)을 잘라 결과가 틀린다. Hibernate 는 이를 알기에 **`limit` 을 SQL 에서 빼고 전체 결과를 다 읽은 뒤 메모리에서 자른다**. 결과는 맞지만 100만 건 테이블이면 100만 행을 힙에 올린 뒤 10건만 남긴다. OOM 으로 직행하는 경로이며, Hibernate 6.x 는 이를 예외로 승격하는 방향으로 정책을 강화했다.
 
-두 번째 함정은 `MultipleBagFetchException: cannot simultaneously fetch multiple bags` 다. Bag 은 "중복 허용, 순서 없는 컴렉션", 즉 `@OrderColumn` 없는 `List` 매핑이다. Bag 둘을 동시에 fetch join 하면 카테시안 곱이 생기고, 어느 행이 어느 컴렉션 소속인지 복원할 키가 없어 예외를 던진다. `Set` 은 중복을 자체 제거해 다중 fetch 가 허용되지만 **진짜 해결이 아니다**. SQL 레벨에서는 여전히 카테시안 곱이 만들어져 A×B 행이 애플리케이션으로 전송되고 중복 제거는 그 뒤 메모리에서 일어난다. 각각 100건이면 10,000행이 네트워크를 탄다.
+두 번째 함정은 `MultipleBagFetchException: cannot simultaneously fetch multiple bags` 다. Bag 은 "중복 허용, 순서 없는 컬렉션", 즉 `@OrderColumn` 없는 `List` 매핑이다. Bag 둘을 동시에 fetch join 하면 카테시안 곱이 생기고, 어느 행이 어느 컬렉션 소속인지 복원할 키가 없어 예외를 던진다. `Set` 은 중복을 자체 제거해 다중 fetch 가 허용되지만 **진짜 해결이 아니다**. SQL 레벨에서는 여전히 카테시안 곱이 만들어져 A×B 행이 애플리케이션으로 전송되고 중복 제거는 그 뒤 메모리에서 일어난다. 각각 100건이면 10,000행이 네트워크를 탄다.
 
-정석 해법은 **ToOne 은 fetch join, 컴렉션은 batch fetch** 로 역할을 나누는 것이다.
+정석 해법은 **ToOne 은 fetch join, 컬렉션은 batch fetch** 로 역할을 나누는 것이다.
 
 ```java
 @Query(value = """
@@ -196,7 +196,7 @@ spring:
 Page<Order> findPageWithToOne(@Param("status") OrderStatus status, Pageable pageable);
 ```
 
-ToOne fetch join 은 행 수를 늘리지 않으므로 `limit` 이 DB 에서 정상 동작한다. 여기에 `default_batch_fetch_size` 가 켜져 있으면 페이지에 담긴 Order 들의 `orderItems` 를 처음 건드리는 순간 IN 절 한 방으로 채워진다. 페이지 크기 10, 컴렉션 2개면 총 3회(루트 1 + 컴렉션 2)로 수렴하고, 컴렉션이 중첩돼도 단계마다 IN 절 1회씩이라 깊이에 선형이다.
+ToOne fetch join 은 행 수를 늘리지 않으므로 `limit` 이 DB 에서 정상 동작한다. 여기에 `default_batch_fetch_size` 가 켜져 있으면 페이지에 담긴 Order 들의 `orderItems` 를 처음 건드리는 순간 IN 절 한 방으로 채워진다. 페이지 크기 10, 컬렉션 2개면 총 3회(루트 1 + 컬렉션 2)로 수렴하고, 컬렉션이 중첩돼도 단계마다 IN 절 1회씩이라 깊이에 선형이다.
 
 ## 8. 캐시 경계와 대량 배치의 메모리 관리
 
@@ -204,7 +204,7 @@ ToOne fetch join 은 행 수를 늘리지 않으므로 `limit` 이 DB 에서 정
 
 쿼리 캐시는 함정이 많다. **결과 엔티티가 아니라 식별자 목록만** 저장하기 때문이다. 히트해도 각 ID 로 엔티티를 다시 찾아야 하고, 2차 캐시에 그 엔티티가 없으면 ID 마다 SELECT 가 나간다. 즉 **쿼리 캐시만 켜고 엔티티 2차 캐시를 안 켜면 N+1 을 새로 만들어낸다.** 또한 대상 테이블의 갱신 타임스탬프로 유효성을 판단하므로 쓰기가 잦으면 거의 항상 무효화되어 오버헤드만 남는다.
 
-대량 배치에서는 영속성 컨텍스트 자체가 메모리 누수원이다. 10만 건을 `persist()` 하면 10만 개 인스턴스 + `EntityEntry` + 스냅샷 배열이 힙에 남고 flush 마다 전수 더티 체킹이 돌다.
+대량 배치에서는 영속성 컨텍스트 자체가 메모리 누수원이다. 10만 건을 `persist()` 하면 10만 개 인스턴스 + `EntityEntry` + 스냅샷 배열이 힙에 남고 flush 마다 전수 더티 체킹이 돈다.
 
 ```java
 @Transactional
@@ -222,11 +222,11 @@ public void bulkInsert(List<OrderRequest> requests) {
 }
 ```
 
-`clear()` 는 전체를, `detach(entity)` 는 특정 엔티티만 뗬다. `clear()` 이후 기존 참조는 모두 detached 가 되어 lazy 접근이 예외를 던지고, `flush()` 없이 `clear()` 하면 변경사항이 **조용히 사라진다**. 순서는 항상 flush → clear 다.
+`clear()` 는 전체를, `detach(entity)` 는 특정 엔티티만 뗀다. `clear()` 이후 기존 참조는 모두 detached 가 되어 lazy 접근이 예외를 던지고, `flush()` 없이 `clear()` 하면 변경사항이 **조용히 사라진다**. 순서는 항상 flush → clear 다.
 
 ## 9. 진단 — 쿼리 수를 보고 테스트로 고정하기
 
-N+1 은 코드 리뷰로 잡힐지 않는다. 로컬 데이터 3건이면 4번이라 안 보이다가 운영에서 1만 건이면 1만 1번이 된다. 계측이 먼저다.
+N+1 은 코드 리뷰로 잡히지 않는다. 로컬 데이터 3건이면 4번이라 안 보이다가 운영에서 1만 건이면 1만 1번이 된다. 계측이 먼저다.
 
 ```yaml
 spring:
@@ -240,7 +240,7 @@ logging:
     org.hibernate.orm.jdbc.bind: TRACE
 ```
 
-`generate_statistics` 는 세션 종료마다 실행 쿼리 수, 컴렉션 페치 수, 2차 캐시 히트/미스를 남긴다. 오버헤드가 있으니 운영에는 지표 수집 목적으로만 쓴다. `org.hibernate.orm.jdbc.bind`(5.x 는 `org.hibernate.type.descriptor.sql`)는 `?` 에 바인딩된 값을 보여 준다. 완성된 SQL 을 보려면 JDBC 드라이버를 감싸는 p6spy 가 편하다. 가장 중요한 것은 **쿼리 수를 테스트로 고정**하는 것이다. 한 번 고쳐도 누군가 lazy 필드를 하나 더 건드리면 조용히 N+1 이 부활한다.
+`generate_statistics` 는 세션 종료마다 실행 쿼리 수, 컬렉션 페치 수, 2차 캐시 히트/미스를 남긴다. 오버헤드가 있으니 운영에는 지표 수집 목적으로만 쓴다. `org.hibernate.orm.jdbc.bind`(5.x 는 `org.hibernate.type.descriptor.sql`)는 `?` 에 바인딩된 값을 보여 준다. 완성된 SQL 을 보려면 JDBC 드라이버를 감싸는 p6spy 가 편하다. 가장 중요한 것은 **쿼리 수를 테스트로 고정**하는 것이다. 한 번 고쳐도 누군가 lazy 필드를 하나 더 건드리면 조용히 N+1 이 부활한다.
 
 ```java
 @SpringBootTest
@@ -268,7 +268,7 @@ class OrderQueryCountTest {
 				.findPageWithToOne(OrderStatus.PAID, PageRequest.of(0, 10))
 				.getContent();
 
-		// 컴렉션을 실제로 순회해 lazy 초기화를 유발한다
+		// 컬렉션을 실제로 순회해 lazy 초기화를 유발한다
 		long itemCount = orders.stream()
 				.flatMap(order -> order.getOrderItems().stream())
 				.count();
@@ -281,7 +281,7 @@ class OrderQueryCountTest {
 }
 ```
 
-`getPrepareStatementCount()` 는 실제 준비된 JDBC statement 수를 센다. `getQueryExecutionCount()` 는 JPQL/HQL 실행만 세고 lazy 로딩 SELECT 는 빠지므로 N+1 탐지에는 전자가 정확하다. 테스트 데이터는 최소 3건 이상 넣어야 한다. 1건이면 1+1=2 라 정상과 구분되지 않는다. 다만 이 테스트의 지연 로딩은 트랜잭션 안에서 항상 성공하므로, OSIV 를 끕 운영에서 터질 `LazyInitializationException` 은 컨트롤러 레벨 통합 테스트로 따로 막아야 한다.
+`getPrepareStatementCount()` 는 실제 준비된 JDBC statement 수를 센다. `getQueryExecutionCount()` 는 JPQL/HQL 실행만 세고 lazy 로딩 SELECT 는 빠지므로 N+1 탐지에는 전자가 정확하다. 테스트 데이터는 최소 3건 이상 넣어야 한다. 1건이면 1+1=2 라 정상과 구분되지 않는다. 다만 이 테스트의 지연 로딩은 트랜잭션 안에서 항상 성공하므로, OSIV 를 끈 운영에서 터질 `LazyInitializationException` 은 컨트롤러 레벨 통합 테스트로 따로 막아야 한다.
 
 ## 참고
 
