@@ -157,7 +157,7 @@ public class TimingInstrumentor {
 
 ## 5. 에이전트 골격: premain, agentmain, ClassFileTransformer
 
-`premain` 은 `-javaagent` 로 로드되어 `main` 보다 먼저 실행되고, `agentmain` 은 Attach API 로 붙을 때 호출된다.
+`premain` 은 `-javaagent` 로 로드되어 `main` 보다 먼저 실행되고, `agentmain` 은 Attach API 로 붙일 때 호출된다.
 
 ```java
 public class TimingAgent {
