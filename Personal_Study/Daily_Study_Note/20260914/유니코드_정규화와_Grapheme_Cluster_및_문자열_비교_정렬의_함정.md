@@ -36,7 +36,7 @@ public final class LengthLayers {
 
 UTF-8 은 코드 포인트 범위에 따라 1~4바이트를 쓴다. ASCII(U+0000~U+007F)는 1바이트, 라틴 확장·키릴(U+0080~U+07FF)은 2바이트, 한글 완성형을 포함한 BMP 대부분(U+0800~U+FFFF)은 3바이트, 이모지 같은 보조 평면(U+10000~U+10FFFF)은 4바이트다. 이 비대칭이 실무에서 바로 문제가 된다. Oracle `VARCHAR2(20)` 는 기본이 BYTE 시맨틱이라 한글 6글자를 넣으면 18바이트를 먹고, 뒤에 설명할 NFD 형태로 들어오면 같은 6글자가 36~54바이트가 되어 `ORA-12899` 로 터진다.
 
-| 단위 | "가" (NFC) | "가" (NFD) | "🇰🇷" | "👍🏽" |
+| 단위 | "가" (NFC) | "가" (NFD) | "🇰🇷" | "👍🏽" |
 |---|---|---|---|---|
 | UTF-8 바이트 | 3 | 6 | 8 | 8 |
 | UTF-16 코드 유닛 (Java `length()`) | 1 | 2 | 4 | 4 |
@@ -235,7 +235,7 @@ public final class KoreanSorter {
     public static void main(String[] args) {
         List<String> raw = Arrays.asList("가나", "가", "Zebra", "apple");
         System.out.println(sort(raw));
-        // binary 정렬이었다면 "Zebra", "apple", "가", "가나" 순으로 흩어진다.
+        // binary 정렬이었다면 "Zebra", "apple", "가", "가나" 순으로 흩어진다.
     }
 }
 ```
@@ -245,7 +245,7 @@ public final class KoreanSorter {
 **MySQL 은 어떤 collation 에서도 유니코드 정규화를 수행하지 않는다.** 이 한 문장이 MySQL 한글 처리의 모든 사고를 설명한다. `utf8mb4_0900_ai_ci` 는 UCA 9.0.0 기반으로 악센트 무시(ai)·대소문자 무시(ci)를 하지만, NFC `'가'`(1문자, 3바이트)와 NFD `'가'`(2문자, 6바이트)는 **여전히 다른 값**이다. `CHAR_LENGTH('가')` 는 1, NFD 형태는 2를 반환하므로 `VARCHAR(10)` 컴럼에 한글 5글자만 들어가는 상황도 생긴다.
 
 | collation | 대소문자 | 악센트 | 공백 패딩 | 정규화 |
-|---|---|---|---|
+|---|---|---|---|---|
 | `utf8mb4_0900_ai_ci` | 무시 | 무시 | NO PAD | 없음 |
 | `utf8mb4_0900_as_cs` | 구분 | 구분 | NO PAD | 없음 |
 | `utf8mb4_unicode_ci` | 무시 | 무시 | PAD SPACE | 없음 |
