@@ -21,7 +21,7 @@ java.lang.ClassCastException: class com.acme.Money cannot be cast to class com.a
    com.acme.Money is in unnamed module of loader org.jboss.modules.ModuleClassLoader @6d06d69c)
 ```
 
-JDK 9부터 예외 메시지에 모듈과 로더 이름이 함께 찍히도록 개선되어 이 진단이 훨씬 쉬워졌다. 괄호 안의 두 로더 이름이 다르면 무조건 로더 격리 문제이지 버전 충돌이 아니다.
+JDK 9부터 예외 메시지에 모듈과 로더 이름이 함께 찍히도록 개선되어(JEP 261 모듈 시스템 도입 시 진단 메시지 보강) 이 진단이 훨씬 쉬워졌다. 괄호 안의 두 로더 이름이 다르면 무조건 로더 격리 문제이지 버전 충돌이 아니다.
 
 `defining loader`와 `initiating loader`를 구분해야 한다. `A.class.getClassLoader()`가 돌려주는 것은 정의 로더다. 위임으로 부모가 실제 정의했다면 자식은 개시 로더일 뿐이고 `getClassLoader()`는 부모를 가리킨다. 이 차이가 "분명히 내 WAR 안에 jar를 넣었는데 왜 서버의 구버전이 로드되는가"의 원인이다.
 
@@ -53,9 +53,9 @@ protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundE
 }
 ```
 
-JDK 8까지의 3계층(Bootstrap → Ext → App)은 JDK 9에서 Bootstrap → Platform → Application으로 바뀌었다. 핵심 차이는 두 가지다. 첫째, Platform 로더(`ClassLoader.getPlatformClassLoader()`)는 더 이상 `URLClassLoader`가 아니다. JDK 8에서 흔히 쓰던 `((URLClassLoader) ClassLoader.getSystemClassLoader()).addURL(...)` 리플렉션 해킹이 JDK 9 이후 `ClassCastException`으로 죽는 이유가 이것이다. 둘째, `jdk.internal.loader.ClassLoaders$AppClassLoader`는 이름이 `"app"`으로 등록되어 있고, 플랫폼 로더가 정의하는 클래스는 대부분 named module에 속한다.
+JDK 8까지의 3계층(Bootstrap → Ext → App)은 JDK 9에서 Bootstrap → Platform → Application으로 바뀜다. 핵심 차이는 두 가지다. 첫째, Platform 로더(`ClassLoader.getPlatformClassLoader()`)는 더 이상 `URLClassLoader`가 아니다. JDK 8에서 흔히 쓰던 `((URLClassLoader) ClassLoader.getSystemClassLoader()).addURL(...)` 리플렉션 해킹이 JDK 9 이후 `ClassCastException`으로 죽는 이유가 이것이다. 둘째, `jdk.internal.loader.ClassLoaders$AppClassLoader`는 이름이 `"app"`으로 등록되어 있고, 플랫폼 로더가 정의하는 클래스는 대부분 named module에 속한다.
 
-`getClassLoadingLock`은 JDK 7의 병렬 로딩 지원(`registerAsParallelCapable`)과 짝을 이룬다. 병렬 가능으로 등록하지 않은 커스텀 로더는 로더 객체 자체를 락으로 잡으므로, 멀티스레드 부팅 시 두 스레드가 서로 다른 클래스를 각각의 로더에서 로드하며 교차 위임하면 데드락이 난다. 커스텀 로더를 만든다면 정적 초기화 블록에 다음 한 줄은 사실상 필수다.
+`getClassLoadingLock`은 JDK 7의 병렬 로딩 지원(`registerAsParallelCapable`)과 쌍을 이룬다. 병렬 가능으로 등록하지 않은 커스텀 로더는 로더 객체 자체를 락으로 잡으므로, 멀티스레드 부팅 시 두 스레드가 서로 다른 클래스를 각각의 로더에서 로드하며 교차 위임하면 데드락이 난다. 커스텀 로더를 만든다면 정적 초기화 블록에 다음 한 줄은 사실상 필수다.
 
 ```java
 public final class PluginClassLoader extends URLClassLoader {
@@ -91,7 +91,7 @@ JBoss/WildFly는 아예 다른 모델을 택했다. `jboss-modules`는 계층형
 
 이 모델의 장점은 "왜 이 클래스가 보이는가"를 그래프로 설명할 수 있다는 것이고, 단점은 전이 의존이 자동으로 따라오지 않아 `NoClassDefFoundError`가 배포 시점에 몰린다는 것이다.
 
-Spring Boot의 실행 가능 fat jar는 또 다른 변형이다. 중첩 jar(`BOOT-INF/lib/*.jar`)를 압축 해제 없이 읽기 위해 커스텀 `URLStreamHandler`를 등록한다. 표준 `java -jar`만으로 동작해야 하므로 위임은 부모 우선을 유지하되, `BOOT-INF/classes`가 앱 로더의 클래스패스가 아니라 이 로더의 탐색 경로에 들어간다.
+Spring Boot의 실행 가능 fat jar는 또 다른 변형이다. `LaunchedClassLoader`(3.2 이후 `LaunchedClassLoader`/`JarLauncher` 구조 재편)는 중첩 jar(`BOOT-INF/lib/*.jar`)를 압축 해제 없이 읽기 위해 커스텀 `URLStreamHandler`를 등록한다. 표준 `java -jar`만으로 동작해야 하므로 위임은 부모 우선을 유지하되, `BOOT-INF/classes`가 앱 로더의 클래스패스가 아니라 이 로더의 탐색 경로에 들어간다.
 
 ## 4. LinkageError 삼형제 구분법
 
@@ -146,7 +146,7 @@ try {
 
 대표 경로 네 가지.
 
-**(a) ThreadLocal.** 값이 웹앱 클래스의 인스턴스이고, 그 ThreadLocal을 WAS의 공용 스레드가 들고 있는 경우. `ThreadLocalMap.Entry`의 키는 약참조지만 **값은 강참조**라서, 키가 수집되어도 스레드가 살아 있는 한 값은 남는다. Tomcat은 `WebappClassLoaderBase.checkThreadLocalsForLeaks()`로 이를 탐지해 경고 로그를 남긴다.
+**(a) ThreadLocal.** 값이 웹앱 클래스의 인스턴스이고, 그 ThreadLocal을 WAS의 공용 스레드가 들고 있는 경우. `ThreadLocalMap.Entry`의 키는 약참조지만 **값은 강참조**라서, 키가 수집되어도 스레드가 살아 있는 한 값은 남는다(`expungeStaleEntries`가 돌기 전까지). Tomcat은 `WebappClassLoaderBase.checkThreadLocalsForLeaks()`로 이를 탐지해 경고 로그를 남긴다.
 
 **(b) JDBC Driver.** `DriverManager`는 부트스트랩/플랫폼 로더 소속이고 등록된 Driver 인스턴스를 정적 리스트로 들고 있다. 웹앱 jar에 들어 있던 드라이버를 해제하지 않으면 영구히 남는다. 해법은 `ServletContextListener`에서 명시적 해제.
 
@@ -185,7 +185,7 @@ jcmd <pid> VM.classloaders show-classes=false
 jcmd <pid> GC.class_stats              # -XX:+UnlockDiagnosticVMOptions 필요
 ```
 
-`VM.classloader_stats` 출력에서 같은 `WebappClassLoader` 유형이 배포 횟수만큼 반복되면 확정이다. 다음으로 힙덤프를 뜬다.
+`VM.classloader_stats` 출력에서 같은 `WebappClassLoader` 유형이 배포 횟수만큼 반복되면 확정이다. 다음으로 힙덤프를 맜다.
 
 ```bash
 jcmd <pid> GC.heap_dump /tmp/leak.hprof
@@ -219,7 +219,7 @@ java -Xlog:class+unload=info -jar app.jar
 
 **공유 API 경계.** 호스트와 플러그인이 주고받는 타입은 반드시 부모 로더가 정의해야 한다. 이를 어기면 §4의 loader constraint violation이 난다. 실무에서는 `plugin-api` 모듈을 별도 jar로 뽑아 호스트 클래스패스에 두고, 플러그인 jar에는 `provided` 스코프로만 둔다.
 
-**언로딩 계약.** 플러그인을 내릴 때 호출할 `close()` 훅을 API에 넣고, 호스트가 로더에 대한 참조를 끊기 전에 반드시 호출한다. `URLClassLoader.close()`는 열린 jar 파일 핸들을 닫아 Windows에서 파일 잠금이 풀리게 하는 효과도 있다(JDK 7+).
+**언로딩 계약.** 플러그인을 내릴 때 호출할 `close()` 훅을 API에 넣고, 호스트가 로더에 대한 참조를 끕기 전에 반드시 호출한다. `URLClassLoader.close()`는 열린 jar 파일 핸들을 닫아 Windows에서 파일 잠금이 풀리게 하는 효과도 있다(JDK 7+).
 
 **위임 방향 명시.** child-first는 기본값으로 두지 말고 패키지 프리픽스 화이트리스트로 제한한다.
 
@@ -247,7 +247,7 @@ protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundE
 }
 ```
 
-반대로, 격리가 필요 없는 경우가 훨씬 많다는 점도 중요하다. 컨테이너 이미지 하나에 애플리케이션 하나를 담는 요즘 배포 방식에서는 WAS 다중 배포 자체가 사라졌고, 그러면 위임 모델을 건드릴 이유도 없다. 의존 충돌은 로더가 아니라 Gradle의 `dependencyInsight`나 Maven Enforcer의 `banDuplicateClasses`로 빌드 시점에 잡는 편이 훨씬 싸다.
+반대로, 격리가 필요 없는 경우가 훨씬 많다는 점도 중요하다. 컨테이너 이미지 하나에 애플리케이션 하나를 담는 요즘 배포 방식에서는 WAS 다중 배포 자체가 사라졌고, 그러면 위임 모델을 건드릴 이유도 없다. 의존 충돌은 로더가 아니라 Gradle의 `dependencyInsight`나 Maven Enforcer의 `banDuplicateClasses`로 빌드 시점에 잡는 편이 훨씬 싼다.
 
 ```bash
 ./gradlew dependencyInsight --dependency jackson-databind --configuration runtimeClasspath
