@@ -205,6 +205,11 @@ spec:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/role: "orders-app"
         vault.hashicorp.com/agent-inject-secret-db: "database/creds/orders-app"
+        vault.hashicorp.com/agent-inject-template-db: |
+          {{- with secret "database/creds/orders-app" -}}
+          spring.datasource.username={{ .Data.username }}
+          spring.datasource.password={{ .Data.password }}
+          {{- end }}
         vault.hashicorp.com/agent-inject-file-db: "application-vault.properties"
     spec:
       serviceAccountName: orders-app
@@ -252,7 +257,7 @@ spring:
 
 **(a) `maxLifetime`을 `max_ttl`보다 짧게.** 커넥션이 자격증명보다 오래 살지 못하게 한다. `max_ttl=24h`라면 `maxLifetime=30m` 정도. 이렇게 하면 풀이 주기적으로 커넥션을 교체하면서 최신 자격증명을 쓴다.
 
-**(b) 자격증명 변경 시 풀 재시작.** Spring Cloud Vault는 자격증명이 바뀌면 이벤트를 발행한다.
+**(b) 자격증명 변경 시 풀 재시작.** Spring Cloud Vault는 자격증명이 바뀌면 `RefreshScope` 이벤트를 발행한다. DataSource를 `@RefreshScope`로 감싸거나, HikariDataSource의 비밀번호를 직접 갱신하고 유휴 커넥션을 비운다.
 
 ```java
 @Component
