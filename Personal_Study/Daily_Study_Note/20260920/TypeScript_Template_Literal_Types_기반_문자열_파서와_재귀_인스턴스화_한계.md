@@ -21,9 +21,9 @@ type Seg = 'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j';          // 10
 type Key = `${Method} /${Seg}/${Seg}/${Seg}`;                // 5 * 10^3 = 5,000
 ```
 
-5,000개는 무해하다. 그러나 곱셈은 금방 벽에 부딪힌다. 10자 유니온 5개를 이어붙인 10^5 = 100,000 은 tsc 5.9.2 에서 곶바로 `error TS2590: Expression produces a union type that is too complex to represent` 로 죽는다. 한 단계 낮춘 9 × 10^4 = 90,000 은 통과하지만 공짜가 아니다. 빈 파일 기준 Types 13,135개가 이 한 줄 때문에 113,152개로 늘고 Check time 이 0.42s → 0.52s 가 된다. 타입 하나가 프로젝트 전체 타입 수를 8배로 부풀린 셈이다.
+5,000개는 무해하다. 그러나 곱셈은 금방 벽에 부딪힌다. 10자 유니온 5개를 이어붙인 10^5 = 100,000 은 tsc 5.9.2 에서 곧바로 `error TS2590: Expression produces a union type that is too complex to represent` 로 죽는다. 한 단계 낮춘 9 × 10^4 = 90,000 은 통과하지만 공짜가 아니다. 빈 파일 기준 Types 13,135개가 이 한 줄 때문에 113,152개로 늘고 Check time 이 0.42s → 0.52s 가 된다. 타입 하나가 프로젝트 전체 타입 수를 8배로 부풀린 셈이다.
 
-이 100,000 은 튜닝 옵션이 아니라 `src/compiler/checker.ts` 에 하드코딩된 상수다. 유니온 생성 경로의 `if (size >= 100000)` 검사가 곶바로 `Expression_produces_a_union_type_that_is_too_complex_to_represent` 를 발생시킨다. 서브타입 검사 쪽에도 별도 휴리스틱이 있어, 100,000회 검사 시점에 남은 작업량을 추정해 1,000,000을 넘을 것 같으면 같은 에러를 낸다.
+이 100,000 은 튜닝 옵션이 아니라 `src/compiler/checker.ts` 에 하드코딩된 상수다. 유니온 생성 경로의 `if (size >= 100000)` 검사가 곧바로 `Expression_produces_a_union_type_that_is_too_complex_to_represent` 를 발생시킨다. 서브타입 검사 쪽에도 별도 휴리스틱이 있어, 100,000회 검사 시점에 남은 작업량을 추정해 1,000,000을 넘을 것 같으면 같은 에러를 낸다.
 
 ## 2. `intrinsic` — 왜 `Uppercase` 는 라이브러리가 아닌가
 
@@ -77,7 +77,7 @@ type B = Num<'true'>;  // never
 
 ## 5. 실전 파서 세 가지
 
-**(a) 경로 파라미터 추출.** React Router / Express 스타일 경로에서 파라미터 객체를 뽑아난다.
+**(a) 경로 파라미터 추출.** React Router / Express 스타일 경로에서 파라미터 객체를 뽑아낸다.
 
 ```ts
 type Params<S extends string> =
@@ -89,7 +89,7 @@ type R = Params<'/users/:id/posts/:postId'>;
 // { id: string } & { postId: string }
 ```
 
-앞의 `${string}` 이 `:` 직전까지를 흡수하고, leftmost-shortest 규칙 덕분에 `infer P` 가 다음 `/` 전까지만 잡는다. 경로 40개를 선언해 측정하면 Instantiations 가 기준선 2,928에서 5,106으로, 즉 경로당 약 54회 증가했다. 실서비스 라우트 테이블에서 충분히 감당 가능한 비용이다.
+앞의 `${string}` 이 `:` 직전까지를 흡수하고, leftmost-shortest 규칙 덕분에 `infer P` 가 다음 `/` 전까지만 잡힌다. 경로 40개를 선언해 측정하면 Instantiations 가 기준선 2,928에서 5,106으로, 즉 경로당 약 54회 증가했다. 실서비스 라우트 테이블에서 충분히 감당 가능한 비용이다.
 
 **(b) 쿼리스트링/CSV 분해.** 구분자로 토큰을 자르는 범용 `Split`.
 
@@ -122,7 +122,7 @@ type Port = Get<Cfg, 'server.http.port'>;   // number
 
 ## 6. 꼬리 재귀 제거의 정확한 조건과 TS2589 의 의미
 
-TS 4.5(2021-11)가 conditional type 에 꼬리 재귀 제거를 도입했다(PR #45711). 릴리스 노트의 조건 서술은 명확하다. **conditional type 의 한 분기가 곶바로 또 다른 conditional type 일 때**, 즉 재귀 호출의 결과를 받아 아무 가공도 하지 않고 그대로 반환할 때만 중간 인스턴스화를 생략한다.
+TS 4.5(2021-11)가 conditional type 에 꼬리 재귀 제거를 도입했다(PR #45711). 릴리스 노트의 조건 서술은 명확하다. **conditional type 의 한 분기가 곧바로 또 다른 conditional type 일 때**, 즉 재귀 호출의 결과를 받아 아무 가공도 하지 않고 그대로 반환할 때만 중간 인스턴스화를 생략한다.
 
 ```ts
 // 꼬리 재귀 O — 결과를 그대로 반환
