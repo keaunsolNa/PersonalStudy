@@ -40,7 +40,7 @@ type Out = z.output<typeof CreatePost>;
 type Same = z.infer<typeof CreatePost>; // z.output 과 동일한 별칭
 ```
 
-세 가지를 짚는다. `.default([])` 는 입력에서 키를 선택적으로, 출력에서 필수로 만든다. `z.coerce.*` 의 입력 타입은 **기본이 `unknown`** 이다(`new Date(value)` 로 그대로 넘기기 때문이다) — 좁히려면 `z.coerce.number<number>()` 처럼 제네릭을 준다. `z.infer` 는 `z.output` 의 별칭이라, 폼 라이브러리에 "사용자가 입력할 값"의 타입으로 넘기면 변환이 끝난 타입을 요구하게 되어 에러가 난다. 폼 상태에는 `z.input`, 도메인 로직에는 `z.output` 이 규칙이다.
+세 가지를 짚는다. `.default([])` 는 입력에서 키를 선택적으로, 출력에서 필수로 만든다. `z.coerce.*` 의 입력 타입은 **기본이 `unknown`** 이다(`new Date(value)` 로 그대로 넘기기 때문) — 좁히려면 `z.coerce.number<number>()` 처럼 제네릭을 준다. `z.infer` 는 `z.output` 의 별칭이라, 폼 라이브러리에 "사용자가 입력할 값"의 타입으로 넘기면 변환이 끝난 타입을 요구하게 되어 에러가 난다. 폼 상태에는 `z.input`, 도메인 로직에는 `z.output` 이 규칙이다.
 
 `zod@4.1` 부터는 `z.codec()` 이 이 비대칭을 양방향으로 정식화했다. `.decode()` 는 Input→Output, `.encode()` 는 Output→Input 이다.
 
@@ -58,7 +58,7 @@ DTO ↔ 엔티티 매퍼를 두 벌 쓰던 자리를 스키마 하나가 대신�
 
 ## 3. 브랜디드 타입: 파싱을 통과해야만 얻는 타입
 
-TypeScript 는 구조적 타입 시스템이라 `type UserId = string` 은 그냥 `string` 이고, `deleteUser(orderId)` 같은 인자 뒤바뀜을 못 잡는다. 명목 타입을 흔내 내려면 교차 타입에 실재하지 않는 브랜드 필드를 엄는다.
+TypeScript 는 구조적 타입 시스템이라 `type UserId = string` 은 그냥 `string` 이고, `deleteUser(orderId)` 같은 인자 뒤바뀜을 못 잡는다. 명목 타입을 흉내 내려면 교차 타입에 실재하지 않는 브랜드 필드를 얹는다.
 
 ```ts
 declare const brand: unique symbol;
@@ -96,10 +96,10 @@ const Env = z.object({
   FEATURE_X: z.stringbool().default(false), // "yes"/"1"/"on" → true
 });
 
-export const env = Env.parse(process.env); // 부팅 시 1회, 실패하면 서버가 안 뜼다
+export const env = Env.parse(process.env); // 부팅 시 1회, 실패하면 서버가 안 뜬다
 ```
 
-`@Valid @RequestBody CreateOrderRequest` 와 핸들러 첫 줄의 `CreateOrder.parse(body)` 는 목적이 같다 — 경계에서 한 번 막고 서비스 계층은 유효한 객체만 본다. 다른 점이 설계를 가른다. Spring 은 **타입이 먼저**고 제약(`@NotBlank`, `@Size`)이 애너테이션으로 얹히며, 위반은 `MethodArgumentNotValidException` 으로 올라와 `@RestControllerAdvice` 가 처리한다. Zod 는 **스키마가 먼저**고 타입이 파생되며, 예외는 프레임워크가 아니라 내 코드가 잡는다. Jackson 이 떠맡던 타입 불일치 검출까지 Zod 몫이라는 뜻이기도 하다. 반대 방향의 이득도 있다. `.transform()` 으로 정규화를 같은 선언에서 끝내 DTO → 도메인 매퍼 층이 줄고, 스키마가 값이라서 `z.toJSONSchema()` 로 OpenAPI 문서나 테스트 픽스쳐에 재사용된다.
+`@Valid @RequestBody CreateOrderRequest` 와 핸들러 첫 줄의 `CreateOrder.parse(body)` 는 목적이 같다 — 경계에서 한 번 막고 서비스 계층은 유효한 객체만 본다. 다른 점이 설계를 가른다. Spring 은 **타입이 먼저**고 제약(`@NotBlank`, `@Size`)이 애너테이션으로 얹히며, 위반은 `MethodArgumentNotValidException` 으로 올라와 `@RestControllerAdvice` 가 처리한다. Zod 는 **스키마가 먼저**고 타입이 파생되며, 예외는 프레임워크가 아니라 내 코드가 잡는다. Jackson 이 떠맡던 타입 불일치 검출까지 Zod 몫이라는 뜻이기도 하다. 반대 방향의 이득도 있다. `.transform()` 으로 정규화를 같은 선언에서 끝내 DTO → 도메인 매퍼 층이 줄고, 스키마가 값이라서 `z.toJSONSchema()` 로 OpenAPI 문서나 테스트 픽스처에 재사용된다.
 
 ## 5. `safeParse` vs `parse`, 그리고 RFC 9457 응답 계약
 
@@ -170,7 +170,7 @@ Zod 4 는 stable 이고 npm `latest` 는 **4.6.5**(2026-09-13 기준)다. 공식
 | `z.string().parse` | 기준 | 약 14.7배 |
 | `z.object().safeParse`(Moltar) | 기준 | 약 6.5배 |
 
-재작성의 핵심은 `ZodObject` 제네릭 단순화로 "인스턴스화 폭발"을 없앵 것이다. 스키마가 수백 개인 모노레포에서는 에디터 반응 속도로 체감된다. API 도 바뀜다. 객체 정책은 `z.object()`(초과 키 제거)·`z.strictObject()`(거부)·`z.looseObject()`(통과)로 최상위 함수화됐고, `z.email()` 같은 문자열 포맷도 최상위로 올라오며 `z.string().email()` 류는 deprecated 됐다. 베타 때 논의되던 `z.interface` 는 **현재 공식 문서에 없으므로 쓰지 말 것**. `@zod/mini` 는 4.5 부터 `zod` 와 버전을 맞춘 독립 패키지로 배포되며, 체이닝 대신 `z.optional(z.string())` 같은 함수형 API 로 트리쉐이킹을 가능하게 한다(같은 예제 gzip **1.88kB**, Zod 3 대비 85% 감소).
+재작성의 핵심은 `ZodObject` 제네릭 단순화로 "인스턴스화 폭발"을 없앤 것이다. 스키마가 수백 개인 모노레포에서는 에디터 반응 속도로 체감된다. API 도 바뀌었다. 객체 정책은 `z.object()`(초과 키 제거)·`z.strictObject()`(거부)·`z.looseObject()`(통과)로 최상위 함수화됐고, `z.email()` 같은 문자열 포맷도 최상위로 올라오며 `z.string().email()` 류는 deprecated 됐다. 베타 때 논의되던 `z.interface` 는 **현재 공식 문서에 없으므로 쓰지 말 것**. `@zod/mini` 는 4.5 부터 `zod` 와 버전을 맞춘 독립 패키지로 배포되며, 체이닝 대신 `z.optional(z.string())` 같은 함수형 API 로 트리셰이킹을 가능하게 한다(같은 예제 gzip **1.88kB**, Zod 3 대비 85% 감소).
 
 성능 도구도 둘 늘었다. `z.compile()` 은 스키마를 루프 없는 평탄한 검증기로 AOT 컴파일하고(20키 객체 301ns → 38ns, 7.8배), `.validate()` 는 `ZodError` 없이 boolean 만 돌려주는 타입 가드로 컴파일된 스키마에서 `.safeParse().success` 대비 최대 34.9배 빠르다 — 에러 메시지가 필요 없는 경로 전용이다.
 
@@ -208,7 +208,7 @@ Valibot 으로 갈아타도 이 미들웨어는 그대로다. 다만 스펙이 �
 | 라이브러리 | 로그인 폼 번들(esbuild) | API 스타일 | 특징 |
 |---|---|---|---|
 | Zod 4 | 약 17.7kB | 메서드 체이닝 | 생태계·타입 추론 품질 최상 |
-| Zod Mini(`@zod/mini`) | 약 6.88kB | 함수형 | 트리쉐이킹 가능, Zod 와 1:1 대응 |
+| Zod Mini(`@zod/mini`) | 약 6.88kB | 함수형 | 트리셰이킹 가능, Zod 와 1:1 대응 |
 | Valibot | 약 1.37kB | 함수형 파이프 | 모듈식, 클라이언트 번들에 유리 |
 | TypeBox | (JSON Schema 산출) | 빌더 | AJV 로 JIT 검증, OpenAPI 와 맞물림 |
 | ArkType | (타입 문법 파싱) | 문자열 DSL | TS 문법 그대로, 런타임 코드 생성 |
@@ -226,7 +226,7 @@ const HANDLERS = {
 } satisfies Record<OrderStatus, (o: Order) => void>; // 키 누락을 컴파일 타임에 잡는다
 ```
 
-사용자 정의 타입 가드(`x is T`)는 **서술과 구현이 분리**돼 있어 검증 로직이 틀려도 컴파일러가 못 잡는다. Zod 스키마는 검증 코드와 타입이 같은 선언에서 나오므로 어긋날 수 없다. 정리하면 외부 데이터는 Zod 로 파싱하고, 결과에는 `.brand()` 로 표식을 남기며, 내부 상수는 `satisfies` 로 지키고, `as` 는 테스트 픽스쳐나 라이브러리 타입 정의의 구멍에만 쓴다.
+사용자 정의 타입 가드(`x is T`)는 **서술과 구현이 분리**돼 있어 검증 로직이 틀려도 컴파일러가 못 잡는다. Zod 스키마는 검증 코드와 타입이 같은 선언에서 나오므로 어긋날 수 없다. 정리하면 외부 데이터는 Zod 로 파싱하고, 결과에는 `.brand()` 로 표식을 남기며, 내부 상수는 `satisfies` 로 지키고, `as` 는 테스트 픽스처나 라이브러리 타입 정의의 구멍에만 쓴다.
 
 ## 참고
 
