@@ -1,4 +1,4 @@
-Notion 원본: https://www.notion.so/3ed5a06fd6d381e494a9ffa995bc9a41
+Notion 원본: https://www.notion.so/3ed5a06fd6d381e9983acecd2288a971
 
 # Oracle 파티셔닝 전략과 파티션 프루닝 및 Local/Global 인덱스 유지보수
 
